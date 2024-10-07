@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-const baseUrl = '';
+export const baseUrl = '';
 
 export const $api = axios.create({
     baseURL: baseUrl,

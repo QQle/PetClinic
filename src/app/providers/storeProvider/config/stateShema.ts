@@ -1,11 +1,11 @@
-// import { IdsSchema } from 'entities/Ids';
-// import { GoodsSchema } from 'entities/Goods';
-// import { FieldSchema } from 'entities/Field';
+import { AuthSchema } from "entities/Authorization";
+import { RegistSchema } from "entities/Registration";
+import { UserSchema } from "entities/User";
 
 export interface StateSchema {
-    // ids: IdsSchema;
-    // goods: GoodsSchema;
-    // filter: FieldSchema
+    auth: AuthSchema;
+    regist: RegistSchema;
+    user: UserSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
