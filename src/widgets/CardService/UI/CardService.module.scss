@@ -1,0 +1,32 @@
+.card{
+    display: flex;
+    gap: 20px;
+    
+}
+.card_content{
+    padding: 60px 48px; 
+    color: var(--primary-txt-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    min-width: 470px;
+    min-height: 430px;
+    background: #fff;
+    border-radius: calc(calc(0.0625 * 1rem) * 60);
+
+    span{
+        padding: 4px 8px;
+        background-color: #E3E9F0;
+        max-width: max-content;
+        border-radius: calc(calc(0.0625 * 1rem) * 60);
+        line-height: 20px;
+        font-weight: normal;
+    }
+    p{
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+        margin: 0;
+    }
+}
