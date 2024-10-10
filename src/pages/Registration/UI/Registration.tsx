@@ -62,7 +62,7 @@ const Registration = () => {
           <div className={style.error}>
             {errors.name && errors.secname && errors.surname && <em>Все поля должны быть заполнены!</em>}
           </div>
-      <Button onClick={handleSubmit(onSubmit)}>Зарегистрироваться</Button>
+      <Button onClick={handleSubmit(onSubmit)} className={style.btn}>Зарегистрироваться</Button>
       <p className={style.signin}>
           У вас уже есть учетная запись? <NavLink to={'/login'} className={style.link}>Авторизоваться</NavLink>
       </p>

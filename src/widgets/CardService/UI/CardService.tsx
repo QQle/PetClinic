@@ -1,5 +1,6 @@
 import { data } from "shared/mock data/cardService";
 import style from "./CardService.module.scss";
+import Button from "shared/UI/Button/Button";
 
 const CardService: React.FC = ({}) => {
     return (
@@ -8,7 +9,7 @@ const CardService: React.FC = ({}) => {
                 <h2>Прием <br></br>{item.title}</h2>
                 <span>от {item.price} ₽</span>
                 <p>{item.description}</p>
-                <button>Запись к врачу</button>
+                <Button>Записать питомца</Button>
             </div>)}
         </div>
     )

@@ -1,0 +1,50 @@
+.cardLoyut{
+    display: flex;
+    gap: 10px;
+}
+.card {
+    min-width: 300px;
+    min-height: 500px;
+    cursor: pointer;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    color: var(--primary-txt-color);
+    transition: all 0.3s;
+    .cardPhoto{
+        width: 300px;
+        height: 500px;
+        background-size: cover;
+    }
+
+    .text{
+        width: 270px;
+        position: absolute;
+        bottom: 11px;
+        left: 12px;
+        background: #fff;
+        padding: 8px 10px;
+        border-radius: 22px;    
+        display: flex;
+        flex-direction: column;
+    }
+    .cardBtnNPrice{
+        margin-top: 20px;
+        line-height: 18px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    span{
+        color: #AEAEAE;
+    }
+    Button{
+        padding: 7px 12px;
+        font-size: 14px;
+    }
+
+}
+.card:hover{
+    transform: scale(1.025);
+}

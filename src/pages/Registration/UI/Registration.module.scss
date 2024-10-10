@@ -8,7 +8,7 @@
   padding: 20px;
   position: relative;
   border-radius: 20px;
-  
+  color: #000000;
 }
 .container{
   display: flex;
@@ -45,4 +45,7 @@ em{
 }
 .error {
   text-align: center;
+}
+.btn {
+  max-width: 100%;
 }

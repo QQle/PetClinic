@@ -74,7 +74,7 @@ const handlePassword = useCallback((value: string) => {
         <div className={style.error}>
           {errors?.password && <em>Заполните поля!</em>}
         </div>
-        <Button onClick={handleSubmit(onSubmit)}>Войти</Button>
+        <Button onClick={handleSubmit(onSubmit)} className={style.btn}>Войти</Button>
         <div className={style.form_section}>
           <p className={style.signin}>Вы не зарегистрированны? <NavLink to={'/signin'} className={style.link}>Зарегистрироваться</NavLink></p>
           </div>
