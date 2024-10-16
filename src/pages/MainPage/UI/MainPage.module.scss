@@ -1,8 +1,74 @@
 .MainPage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    flex-wrap: wrap;
+  width: 1640px;
+  height: 100%;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.infoCards {
+  display: flex;
+  gap: 5px;
+}
+.infoCard {
+  width: 50%;
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  background-color: #fff;
+  color: #000;
+  border-radius: 46px;
+  gap: 50px;
+}
+.infoCard_title {
+  width: 60%;
+
+  h2 {
+    font-weight: 600;
+    margin-bottom: 25px;
+    font-size: 32px;
+    line-height: 34px;
   }
+  span {
+    color: #0142ff;
+  }
+}
+.infoCard_groups {
+  display: flex;
+  justify-content: space-between;
+  img {
+    max-width: max-content;
+    height: 55px;
+  }
+}
+.infoCard_group {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  height: 140px;
+  overflow: hidden;
+}
+.infoCardPers {
+  width: 50%;
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  background-color: #fff;
+  color: #000;
+  border-radius: 46px;
+
+  h2 {
+    font-weight: 600;
+    margin-bottom: 25px;
+    font-size: 32px;
+    line-height: 34px;
+    letter-spacing: -2.1px;
+  }
+  span {
+    font-weight: 700;
+  }
+  p {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+}

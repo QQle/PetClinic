@@ -1,19 +1,18 @@
 .Button {
-    cursor: pointer;
-    color: #fff;
-    background:#025bff;
-    border: 1px solid #025bff;
-    transition: all 0.3s;
-    border-radius: 60px;
-    text-transform: uppercase;
-    padding: 13px 23px;
-    max-width: fit-content;
-  }
-  
-  .disabled {
-    opacity: 0.5;
-  }
-.Button:hover{
+  cursor: pointer;
+  color: #fff;
+  background: #025bff;
+  border: 1px solid #025bff;
+  transition: all 0.3s;
+  border-radius: 60px;
+  text-transform: uppercase;
+  padding: 13px 23px;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+.Button:hover {
   color: #025bff;
   background: #fff;
 }
