@@ -11,11 +11,11 @@
 .infoCard {
   width: 50%;
   display: flex;
-  padding: 60px 48px;
+  padding: var(--card-padding);
   flex-direction: column;
   background-color: #fff;
   color: #000;
-  border-radius: 46px;
+  border-radius: var(--card-border-radius);
   gap: 50px;
 }
 .infoCard_title {
@@ -69,6 +69,64 @@
     font-size: 16px;
     line-height: 22px;
     font-weight: normal;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+  }
+  li::marker {
+    color: #0142ff;
+  }
+}
+
+.top_box {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  background: #fff;
+  margin-bottom: 5px;
+  color: #000;
+  align-items: center;
+  h1 {
+    font-style: italic;
+    line-height: 150px;
+    font-size: 170px;
+    color: #1f2127;
+  }
+  .top_box_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    span {
+      width: min-content;
+      text-align: right;
+      line-height: 40px;
+      letter-spacing: -0.3px;
+      font-size: 50px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 32px;
+      line-height: 47.6px;
+      letter-spacing: 0.4px;
+      color: #013fff;
+    }
+    a {
+      font-size: 15.43px;
+      color: #000;
+      font-weight: normal;
+      letter-spacing: -0.23px;
+      line-height: normal;
+      transition: all 0.3s;
+    }
+    a:hover {
+      color: #013fff;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      width: 270px;
+      text-align: right;
+      gap: 10px;
+    }
   }
 }
