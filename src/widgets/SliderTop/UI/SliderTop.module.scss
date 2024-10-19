@@ -1,0 +1,123 @@
+.mainSL {
+  background: linear-gradient(#0273ff, #013fff);
+  border-radius: var(--card-border-radius);
+}
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 80px;
+}
+
+.slide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  .slide_img {
+    position: absolute;
+    z-index: 2;
+    bottom: -70px;
+    right: 49.5%;
+    transform: translate(49%, 0);
+  }
+  .slide_title {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    h3 {
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 20px;
+      width: 60%;
+    }
+  }
+  h3 {
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: -0.3px;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    width: max-content;
+  }
+  p {
+    width: 70%;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+  }
+  Button {
+    background: #fff;
+    color: #000;
+  }
+  Button:hover {
+    background: #1f2127;
+    color: #fff;
+  }
+}
+
+.top_box {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  background: #fff;
+  margin-bottom: 5px;
+  color: #000;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+  h1 {
+    font-style: italic;
+    line-height: 150px;
+    font-size: 170px;
+    color: #1f2127;
+  }
+  .top_box_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    span {
+      width: min-content;
+      text-align: right;
+      line-height: 40px;
+      letter-spacing: -0.3px;
+      font-size: 50px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 32px;
+      line-height: 47.6px;
+      letter-spacing: 0.4px;
+      color: #013fff;
+    }
+    a {
+      font-size: 15.43px;
+      color: #000;
+      font-weight: normal;
+      letter-spacing: -0.23px;
+      line-height: normal;
+      transition: all 0.3s;
+    }
+    a:hover {
+      color: #013fff;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      width: 270px;
+      text-align: right;
+      gap: 10px;
+    }
+  }
+}
+.customDots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}

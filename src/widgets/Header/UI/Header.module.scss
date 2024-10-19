@@ -1,9 +1,13 @@
 .header {
   display: flex;
+  position: fixed;
+  margin-bottom: 20px;
+  left: 0;
+  right: 0;
   justify-content: space-between;
   padding: 10px 20px;
   align-items: center;
-  margin-bottom: 20px;
+  z-index: 10;
   background-color: #1b1b29;
   img {
     width: 50px;
