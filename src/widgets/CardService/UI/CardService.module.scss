@@ -1,32 +1,32 @@
-.card{
-    display: flex;
-    gap: 20px;
-    
+.card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
 }
-.card_content{
-    padding: 60px 48px; 
-    color: var(--primary-txt-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    min-width: 470px;
-    min-height: 430px;
-    background: #fff;
-    border-radius: calc(calc(0.0625 * 1rem) * 60);
+.card_content {
+  padding: 48px 38px;
+  color: var(--primary-txt-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  min-width: 400px;
+  min-height: 380px;
+  background: #fff;
+  border-radius: var(--card-border-radius);
 
-    span{
-        padding: 4px 8px;
-        background-color: #E3E9F0;
-        max-width: max-content;
-        border-radius: calc(calc(0.0625 * 1rem) * 60);
-        line-height: 20px;
-        font-weight: normal;
-    }
-    p{
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: normal;
-        margin: 0;
-    }
+  span {
+    padding: 4px 8px;
+    background-color: #e3e9f0;
+    max-width: max-content;
+    border-radius: 36px;
+    line-height: 20px;
+    font-weight: normal;
+  }
+  p {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: normal;
+    margin: 0;
+  }
 }

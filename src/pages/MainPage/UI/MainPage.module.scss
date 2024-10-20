@@ -9,6 +9,8 @@
 .infoCards {
   display: flex;
   gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .infoCard {
   width: 50%;
@@ -55,7 +57,7 @@
   flex-direction: column;
   background-color: #fff;
   color: #000;
-  border-radius: 46px;
+  border-radius: var(--card-border-radius);
 
   h2 {
     font-weight: 600;
@@ -75,5 +77,37 @@
   }
   li::marker {
     color: #0142ff;
+  }
+}
+
+.CardService {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .CardService_btn {
+    background-color: transparent;
+    transition: all 0.6s;
+  }
+  .CardService_btn:hover {
+    background-color: #fff;
+  }
+}
+.CardPersonal {
+  margin: 5px 0 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #000;
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    line-height: 30px;
+    letter-spacing: -1px;
   }
 }

@@ -4,8 +4,20 @@ import { CardPerson } from "widgets/CardPerson";
 import { cardInfo } from "shared/mock data/cardInfo";
 import { cardInfoPers } from "shared/mock data/cardInfo";
 import { SliderTop } from "widgets/SliderTop";
+import Button from "shared/UI/Button/Button";
+import { useState } from "react";
+import { data } from "shared/mock data/cardService";
 
 const MainPage = () => {
+  const [showMore, setShowMore] = useState<boolean>(false);
+
+  const defaultCount = 4;
+  const displayedCards = showMore ? data : data.slice(0, defaultCount);
+
+  const handleToggle = () => {
+    setShowMore(!showMore);
+  };
+
   return (
     <div className={cls.MainPage}>
       <SliderTop />
@@ -37,6 +49,16 @@ const MainPage = () => {
             ))}
           </div>
         </div>
+      </section>
+      <section className={cls.CardService}>
+        <CardService cards={displayedCards} />
+        <Button className={cls.CardService_btn} onClick={handleToggle}>
+          {showMore ? "Скрыть" : "Показать еще"}
+        </Button>
+      </section>
+      <section className={cls.CardPersonal}>
+        <h2>Наши врачи</h2>
+        <CardPerson />
       </section>
     </div>
   );
