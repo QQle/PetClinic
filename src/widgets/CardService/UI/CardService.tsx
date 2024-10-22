@@ -1,6 +1,8 @@
 import style from "./CardService.module.scss";
 import Button from "shared/UI/Button/Button";
-import { FC } from "react";
+import { FC, useState } from "react";
+import Modal from "shared/UI/Modal/Modal";
+import { SignUpForms } from "widgets/SignupForms";
 
 interface CardServiceProps {
   cards: Array<{
@@ -12,6 +14,10 @@ interface CardServiceProps {
 }
 
 const CardService: FC<CardServiceProps> = ({ cards }) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const toggleVisible = (id: number) => {
+    setVisible(true);
+  };
   return (
     <div className={style.card}>
       {cards.map((item) => (
@@ -22,9 +28,14 @@ const CardService: FC<CardServiceProps> = ({ cards }) => {
           </h2>
           <span>от {item.price} ₽</span>
           <p>{item.description}</p>
-          <Button>Записать питомца</Button>
+          <Button onClick={() => toggleVisible(item.id)}>
+            Записать питомца
+          </Button>
         </div>
       ))}
+      <Modal visible={visible} setVisible={setVisible}>
+        <SignUpForms />
+      </Modal>
     </div>
   );
 };

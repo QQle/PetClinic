@@ -7,6 +7,8 @@ import { getAuth, userService } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { useOutsideClick } from "shared/lib/hooks/useOutsideClick";
 import logo from "../../../shared/assets/love_icon.svg";
+import prof_icon from "../../../shared/assets/profile_icon.svg";
+import arrow from "../../../shared/assets/down_arrow.svg";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -41,12 +43,17 @@ const Header = () => {
         <Button onClick={() => navigate("/login")}>Войти</Button>
       ) : (
         <div ref={btnRef} className={cls.header_profile} onClick={toggleOpen}>
-          {/* <div className={cls.header_profile__img}><img src={prof_icon} alt='avatar'/></div> */}
-          {/* <img src={arrow} alt='arrow' className={cls.header_profile__arrow}/>  */}
+          <div className={cls.header_profile__img}>
+            <img src={prof_icon} alt="avatar" />
+          </div>
+          <span>Bebra</span>
           {isOpen && (
             <div className={cls.header_profile__links} ref={selectRef}>
               <div className={cls.profile_links__item}>
                 <NavLink to={`/profile`}>Профиль</NavLink>
+              </div>
+              <div className={cls.profile_links__item}>
+                <NavLink to={`/profile`}>Приют</NavLink>
               </div>
               <div className={cls.profile_links__item}>
                 <NavLink to="/" onClick={() => dispatch(userService())}>

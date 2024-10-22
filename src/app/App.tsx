@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { AppRouter } from "./providers/router";
 import { Header } from "widgets/Header";
+import { Footer } from "widgets/footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <AppRouter />
         </div>
       </Suspense>
+      <Footer />
     </div>
   );
 }
