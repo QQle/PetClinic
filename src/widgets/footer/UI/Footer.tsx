@@ -13,11 +13,11 @@ export const Footer = () => {
         </NavLink>
         <nav className={style.footer__navigate}>
           <ul>
-            <NavLink to={`/price`}>
-              <li>ДОБАВИТЬ</li>
+            <NavLink to={`/shelter`}>
+              <li>ПРИЮТ</li>
             </NavLink>
             <NavLink to={`/service`}>
-              <li>ДОБАВИТЬ</li>
+              <li>ПРОФИЛЬ</li>
             </NavLink>
           </ul>
         </nav>

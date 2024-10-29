@@ -52,7 +52,7 @@ const SliderTop = () => {
     }
   }, []);
 
-  return (
+  return -(
     <div>
       <div className={cls.top_box}>
         <h1>
@@ -68,7 +68,7 @@ const SliderTop = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Москва, м. Алексеевская, Зубарев переулок д. 7
+              Казань, КНИТУ-КАИ
             </a>
             <img src="https://vet.city/upload/iblock/dde/p2s5n0fk7eh6vgg7weipdz7f7cjpdnn0.svg" />
           </div>

@@ -8,8 +8,10 @@ export const sliderimg = [
   },
   {
     id: 2,
-    title: "Check Up  онкологический",
-    img: "https://vet.city/upload/vote/e21/a2con0q3wmmh9ewxmp31ees755q3gjy5.png",
+    title: "У нас самые милые питомцы!",
+    descr:
+      "Все кошки и собаки стерилизованные, знаю команды и жду своего хозяина!",
+    img: "https://vet.city/upload/iblock/42a/he8e4hjamavo9e0i352qylrvhk6ew3rt.png",
   },
   {
     id: 3,
@@ -19,6 +21,6 @@ export const sliderimg = [
   {
     id: 4,
     title: "Check Up  онкологический",
-    img: "https://vet.city/upload/vote/78c/k0fq4mv95m8iqo4ljnt0ihyx2610gvug.png",
+    img: "https://vet.city/upload/iblock/bb8/tkjbw1i1qbrmctw52h7x2p7vlqt85dxo.png",
   },
 ];

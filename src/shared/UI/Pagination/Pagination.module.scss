@@ -1,0 +1,17 @@
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 20px;
+}
+
+.PageButton {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.2s;
+}

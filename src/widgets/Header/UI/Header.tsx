@@ -32,25 +32,33 @@ const Header = () => {
         <h1>PETCLINIC</h1>
       </NavLink>
       <div className={cls.header_navigate}>
-        <NavLink to={`/tasks`} className={cls.header_navigate__item}>ПРИЮТ</NavLink>
-        <NavLink to={"/"} className={cls.header_navigate__item}>ПРОФИЛЬ</NavLink>
+        <NavLink to={`/shelter`} className={cls.header_navigate__item}>
+          ПРИЮТ
+        </NavLink>
+        <NavLink to={"/"} className={cls.header_navigate__item}>
+          ПРОФИЛЬ
+        </NavLink>
         <NavLink
           to={"/vacancy"}
           className={cls.header_navigate__item}
         ></NavLink>
-        <NavLink  className={cls.header_navigate__item} to="/" onClick={() => dispatch(userService())}>
+        <NavLink
+          className={cls.header_navigate__item}
+          to="/"
+          onClick={() => dispatch(userService())}
+        >
           ВЫЙТИ
         </NavLink>
         {!isAuth ? (
-        <Button onClick={() => navigate("/login")}>Войти</Button>
-      ) : (
-        <div className={cls.header_profile} onClick={toggleOpen}>
-          <div className={cls.header_profile__img}>
-            <img src={prof_icon} alt="avatar" />
+          <Button onClick={() => navigate("/login")}>Войти</Button>
+        ) : (
+          <div className={cls.header_profile} onClick={toggleOpen}>
+            <div className={cls.header_profile__img}>
+              <img src={prof_icon} alt="avatar" />
+            </div>
+            <span>Bebra</span>
           </div>
-          <span>Bebra</span>
-        </div>
-      )}
+        )}
       </div>
     </header>
   );
