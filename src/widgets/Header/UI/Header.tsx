@@ -32,38 +32,26 @@ const Header = () => {
         <h1>PETCLINIC</h1>
       </NavLink>
       <div className={cls.header_navigate}>
-        <NavLink to={`/tasks`} className={cls.header_navigate__item}></NavLink>
-        <NavLink to={"/"} className={cls.header_navigate__item}></NavLink>
+        <NavLink to={`/tasks`} className={cls.header_navigate__item}>ПРИЮТ</NavLink>
+        <NavLink to={"/"} className={cls.header_navigate__item}>ПРОФИЛЬ</NavLink>
         <NavLink
           to={"/vacancy"}
           className={cls.header_navigate__item}
         ></NavLink>
-      </div>
-      {!isAuth ? (
+        <NavLink  className={cls.header_navigate__item} to="/" onClick={() => dispatch(userService())}>
+          ВЫЙТИ
+        </NavLink>
+        {!isAuth ? (
         <Button onClick={() => navigate("/login")}>Войти</Button>
       ) : (
-        <div ref={btnRef} className={cls.header_profile} onClick={toggleOpen}>
+        <div className={cls.header_profile} onClick={toggleOpen}>
           <div className={cls.header_profile__img}>
             <img src={prof_icon} alt="avatar" />
           </div>
           <span>Bebra</span>
-          {isOpen && (
-            <div className={cls.header_profile__links} ref={selectRef}>
-              <div className={cls.profile_links__item}>
-                <NavLink to={`/profile`}>Профиль</NavLink>
-              </div>
-              <div className={cls.profile_links__item}>
-                <NavLink to={`/profile`}>Приют</NavLink>
-              </div>
-              <div className={cls.profile_links__item}>
-                <NavLink to="/" onClick={() => dispatch(userService())}>
-                  Выйти
-                </NavLink>
-              </div>
-            </div>
-          )}
         </div>
       )}
+      </div>
     </header>
   );
 };
