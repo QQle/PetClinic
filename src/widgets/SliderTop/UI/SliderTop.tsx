@@ -52,7 +52,7 @@ const SliderTop = () => {
     }
   }, []);
 
-  return -(
+  return (
     <div>
       <div className={cls.top_box}>
         <h1>

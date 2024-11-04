@@ -1,6 +1,6 @@
 export interface UserSchema {
-    userID: string,
-    isAuth: boolean,
-    isLoading: boolean,
-    error?: string, 
+  userID: string;
+  isAuth: boolean;
+  isLoading: boolean;
+  error?: string;
 }

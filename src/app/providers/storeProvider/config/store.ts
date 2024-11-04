@@ -3,6 +3,7 @@ import { AuthReducer } from "entities/Authorization";
 import { RegistReducer } from "entities/Registration";
 import { UserReducer } from "entities/User";
 import { PetsRegisteredReducer } from "entities/PetsRegistered";
+import { VetReducer } from "entities/Vet";
 import { StateSchema } from "./stateShema";
 
 export function createRootStore(initialState?: StateSchema) {
@@ -11,6 +12,7 @@ export function createRootStore(initialState?: StateSchema) {
     regist: RegistReducer,
     user: UserReducer,
     pets: PetsRegisteredReducer,
+    vet: VetReducer,
   };
 
   return configureStore<StateSchema>({

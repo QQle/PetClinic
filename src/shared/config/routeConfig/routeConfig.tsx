@@ -5,6 +5,7 @@ import { Authorization } from "pages/Authorization";
 import { Registration } from "pages/Registration";
 import { ShelterPage } from "pages/ShelterPage";
 import { PetPage } from "pages/PetPage";
+import { VetPage } from "pages/VetPage";
 
 export enum AppRoutes {
   MAIN = "main",
@@ -12,6 +13,7 @@ export enum AppRoutes {
   REGIST = "sigin",
   SHELTER = "shelter",
   PET = "pet",
+  VET = "vetCabinet",
   PAGE_NOT_FOUND = "page_not_found",
 }
 
@@ -21,6 +23,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.REGIST]: "signin",
   [AppRoutes.SHELTER]: "shelter",
   [AppRoutes.PET]: "/pet/:id",
+  [AppRoutes.VET]: "/vetCabinet/:id",
   // must be last
   [AppRoutes.PAGE_NOT_FOUND]: "*",
 };
@@ -45,6 +48,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.PET]: {
     path: RoutePath.pet,
     element: <PetPage />,
+  },
+  [AppRoutes.VET]: {
+    path: RoutePath.vetCabinet,
+    element: <VetPage />,
   },
   // must be last
   [AppRoutes.PAGE_NOT_FOUND]: {
