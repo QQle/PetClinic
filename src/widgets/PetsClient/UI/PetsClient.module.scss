@@ -1,0 +1,22 @@
+.PetsList {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  .Pet {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 110px;
+      height: 110px;
+    }
+  }
+  .Pet:hover {
+    background: #ffd4d457;
+  }
+}
