@@ -1,6 +1,7 @@
 import React from "react";
 import cls from "./ClientPage.module.scss";
 import { PetsClient } from "widgets/PetsClient";
+import { RecordsList } from "widgets/RecordsList";
 
 const pets = [
   {
@@ -24,6 +25,7 @@ const ClientPage = () => {
   return (
     <div className={cls.ProfilePage}>
       <PetsClient pets={pets} />
+      <RecordsList />
     </div>
   );
 };

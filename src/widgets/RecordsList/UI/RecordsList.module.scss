@@ -1,0 +1,17 @@
+.records {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.record {
+  width: 800px;
+  color: black;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30px 40px;
+  border-radius: var(--card-border-radius);
+}
