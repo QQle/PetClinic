@@ -15,6 +15,7 @@ import {
 } from "entities/Registration";
 import Button from "shared/UI/Button/Button";
 import { getPhone } from "entities/Registration/model/selectors/getPhone";
+import toast, { Toaster } from "react-hot-toast";
 
 const Registration = () => {
   const dispatch = useAppDispatch();
@@ -70,9 +71,9 @@ const Registration = () => {
     if (result.meta.requestStatus === "fulfilled") {
       navigate("/login");
     } else {
-      setVisible(true);
+      toast.error(Error);
     }
-  }, [dispatch, navigate, name, password, email]);
+  }, [dispatch, navigate, name, password, email, phone]);
 
   return (
     <div className={style.container}>
@@ -94,8 +95,8 @@ const Registration = () => {
         />
         <input
           {...register("phone", { required: true })}
-          placeholder="PhoneNumber"
-          type="number"
+          placeholder="Телефон"
+          type="text"
           className={style.input}
           onChange={(e) => handlePhone(e.target.value)}
         />
@@ -133,7 +134,6 @@ const Registration = () => {
           </NavLink>
         </p>
       </form>
-      <div>{Error}</div>
     </div>
   );
 };

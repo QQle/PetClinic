@@ -28,29 +28,34 @@ const Header = () => {
         <NavLink to={`/shelter`} className={cls.header_navigate__item}>
           ПРИЮТ
         </NavLink>
-        <NavLink to={`/Profile/${id}`} className={cls.header_navigate__item}>
-          ПРОФИЛЬ
-        </NavLink>
-        <NavLink
-          to={"/vacancy"}
-          className={cls.header_navigate__item}
-        ></NavLink>
-        <NavLink
-          className={cls.header_navigate__item}
-          to="/login"
-          onClick={() => dispatch(userService())}
-        >
-          ВЫЙТИ
-        </NavLink>
         {!isAuth ? (
           <Button onClick={() => navigate("/login")}>Войти</Button>
         ) : (
-          <div className={cls.header_profile} onClick={toggleOpen}>
-            <div className={cls.header_profile__img}>
-              <img src={prof_icon} alt="avatar" />
+          <>
+            <div className={cls.header_profile} onClick={toggleOpen}>
+              <div className={cls.header_profile__img}>
+                <img src={prof_icon} alt="avatar" />
+              </div>
+              <span>Bebra</span>
             </div>
-            <span>Bebra</span>
-          </div>
+            <NavLink
+              to={`/Profile/${id}`}
+              className={cls.header_navigate__item}
+            >
+              ПРОФИЛЬ
+            </NavLink>
+            <NavLink
+              to={"/vacancy"}
+              className={cls.header_navigate__item}
+            ></NavLink>
+            <NavLink
+              className={cls.header_navigate__item}
+              to="/login"
+              onClick={() => dispatch(userService())}
+            >
+              ВЫЙТИ
+            </NavLink>
+          </>
         )}
       </div>
     </header>

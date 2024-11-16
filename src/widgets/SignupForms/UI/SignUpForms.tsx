@@ -20,6 +20,7 @@ const SignUpForms = ({}) => {
         <input defaultValue="test" {...register("example")} />
         <input placeholder="Кличка" {...register} />
         <input placeholder="Возраст" {...register} />
+        {/* comboBox vetspes */}
         <input {...register("exampleRequired", { required: true })} />
         <Button>ЗАПИСАТЬСЯ</Button>
       </form>
