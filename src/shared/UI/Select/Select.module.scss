@@ -1,0 +1,21 @@
+.selectContainer {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.customSelect {
+  width: 100%;
+  padding: 1rem;
+  font-size: 16px;
+  color: #333;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  appearance: none;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.select {
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  color: #666;
+}

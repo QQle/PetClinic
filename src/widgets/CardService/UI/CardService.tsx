@@ -3,8 +3,10 @@ import Button from "shared/UI/Button/Button";
 import { FC, useState } from "react";
 import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
+import toast, { Toaster } from "react-hot-toast";
 
 interface CardServiceProps {
+  isAuth: boolean;
   cards: Array<{
     id: number;
     title: string;
@@ -13,10 +15,12 @@ interface CardServiceProps {
   }>;
 }
 
-const CardService: FC<CardServiceProps> = ({ cards }) => {
+const CardService: FC<CardServiceProps> = ({ cards, isAuth }) => {
   const [visible, setVisible] = useState<boolean>(false);
   const toggleVisible = (id: number) => {
-    setVisible(true);
+    !isAuth
+      ? setVisible(true)
+      : toast(() => <span>Вам надо зайти в свой аккаунт!</span>);
   };
   return (
     <div className={style.card}>

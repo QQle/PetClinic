@@ -7,10 +7,12 @@ import { SliderTop } from "widgets/SliderTop";
 import Button from "shared/UI/Button/Button";
 import { useState } from "react";
 import { data } from "shared/mock data/cardService";
+import { useSelector } from "react-redux";
+import { getAuth } from "entities/User";
 
 const MainPage = () => {
   const [showMore, setShowMore] = useState<boolean>(false);
-
+  const isAuth = useSelector(getAuth);
   const defaultCount = 4;
   const displayedCards = showMore ? data : data.slice(0, defaultCount);
 
@@ -51,7 +53,7 @@ const MainPage = () => {
         </div>
       </section>
       <section className={cls.CardService}>
-        <CardService cards={displayedCards} />
+        <CardService cards={displayedCards} isAuth={isAuth} />
         <Button className={cls.CardService_btn} onClick={handleToggle}>
           {showMore ? "Скрыть" : "Показать еще"}
         </Button>
