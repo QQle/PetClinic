@@ -31,6 +31,12 @@ const SignUpForms = ({}) => {
           value={selectedHotel}
           onChange={handleChange}
         />
+        <Select
+          children="Кого хотите записать?"
+          options={hotelOptions}
+          value={selectedHotel}
+          onChange={handleChange}
+        />
         <Button>ЗАПИСАТЬСЯ</Button>
       </form>
     </div>

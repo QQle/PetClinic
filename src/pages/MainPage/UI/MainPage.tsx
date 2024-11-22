@@ -7,6 +7,7 @@ import { SliderTop } from "widgets/SliderTop";
 import Button from "shared/UI/Button/Button";
 import { useState } from "react";
 import { data } from "shared/mock data/cardService";
+import { dataPerson } from "shared/mock data/cardPersonal";
 import { useSelector } from "react-redux";
 import { getAuth } from "entities/User";
 
@@ -60,7 +61,7 @@ const MainPage = () => {
       </section>
       <section className={cls.CardPersonal}>
         <h2>Наши врачи</h2>
-        <CardPerson />
+        <CardPerson persons={dataPerson} isAuth={isAuth} />
       </section>
     </div>
   );

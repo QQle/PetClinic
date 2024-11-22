@@ -18,7 +18,7 @@ interface CardServiceProps {
 const CardService: FC<CardServiceProps> = ({ cards, isAuth }) => {
   const [visible, setVisible] = useState<boolean>(false);
   const toggleVisible = (id: number) => {
-    !isAuth
+    isAuth
       ? setVisible(true)
       : toast(() => <span>Вам надо зайти в свой аккаунт!</span>);
   };

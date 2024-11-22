@@ -7,13 +7,21 @@ import { getAuth, userService } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import logo from "../../../shared/assets/love_icon.svg";
 import prof_icon from "../../../shared/assets/profile_icon.svg";
+import { getUserName } from "entities/Authorization";
+import {
+  USER_LOCALSTORAGE_ID,
+  USER_LOCALSTORAGE_USERNAME,
+} from "shared/const/localStorage";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(getAuth);
+  const userNameLS = localStorage.getItem(USER_LOCALSTORAGE_USERNAME);
+  const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
+  const userName = JSON.parse(userNameLS || "user");
+  const userID = JSON.parse(userIDLS || "0");
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const id = 1;
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -25,29 +33,28 @@ const Header = () => {
         <h1>PETCLINIC</h1>
       </NavLink>
       <div className={cls.header_navigate}>
-        <NavLink to={`/shelter`} className={cls.header_navigate__item}>
-          ПРИЮТ
-        </NavLink>
         {!isAuth ? (
           <Button onClick={() => navigate("/login")}>Войти</Button>
         ) : (
           <>
-            <div className={cls.header_profile} onClick={toggleOpen}>
-              <div className={cls.header_profile__img}>
-                <img src={prof_icon} alt="avatar" />
-              </div>
-              <span>Bebra</span>
-            </div>
             <NavLink
-              to={`/Profile/${id}`}
+              to={`/Profile/${userID}`}
               className={cls.header_navigate__item}
             >
-              ПРОФИЛЬ
+              <div className={cls.header_profile} onClick={toggleOpen}>
+                <div className={cls.header_profile__img}>
+                  <img src={prof_icon} alt="avatar" />
+                </div>
+                <span>{userName}</span>
+              </div>
             </NavLink>
             <NavLink
               to={"/vacancy"}
               className={cls.header_navigate__item}
             ></NavLink>
+            <NavLink to={`/shelter`} className={cls.header_navigate__item}>
+              ПРИЮТ
+            </NavLink>
             <NavLink
               className={cls.header_navigate__item}
               to="/login"
