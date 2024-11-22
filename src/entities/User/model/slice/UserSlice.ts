@@ -6,7 +6,7 @@ const initialState: UserSchema = {
   error: "",
   isLoading: false,
   userID: "",
-  isAuth: false,
+  isAuth: true,
 };
 
 export const UserSlice = createSlice({

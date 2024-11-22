@@ -7,24 +7,6 @@ import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import { FormAddPet } from "widgets/AddPet";
 
-const pets = [
-  {
-    id: 1,
-    type: "Кошка",
-    name: "Буська",
-  },
-  {
-    id: 2,
-    type: "Собака",
-    name: "Амур",
-  },
-  {
-    id: 3,
-    type: "Собака",
-    name: "Амур",
-  },
-];
-
 const ClientPage = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [visibleAdd, setVisibleAdd] = useState<boolean>(false);

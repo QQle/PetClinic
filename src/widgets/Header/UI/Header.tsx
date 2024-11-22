@@ -15,7 +15,7 @@ import {
 
 const Header = () => {
   const dispatch = useAppDispatch();
-  const isAuth = useSelector(getAuth);
+  const isAuth = true;
   const userNameLS = localStorage.getItem(USER_LOCALSTORAGE_USERNAME);
   const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
   const userName = JSON.parse(userNameLS || "user");

@@ -1,11 +1,13 @@
-.records {
+.vetPage {
   display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-top: 100px;
   flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
-.record {
+.vetPage_card {
   width: 800px;
   color: black;
   background: #fff;

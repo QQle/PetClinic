@@ -14,13 +14,13 @@ import { repeatAuth } from "entities/User";
 function App() {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem(USER_LOCALSTORAGE_TOKEN);
-    const refreshToken = localStorage.getItem(USER_LOCALSTORAGE_REFRESH);
-    if (accessToken && refreshToken) {
-      dispatch(repeatAuth({ accessToken, refreshToken }));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem(USER_LOCALSTORAGE_TOKEN);
+  //   const refreshToken = localStorage.getItem(USER_LOCALSTORAGE_REFRESH);
+  //   if (accessToken && refreshToken) {
+  //     dispatch(repeatAuth({ accessToken, refreshToken }));
+  //   }
+  // }, [dispatch]);
 
   ScrollToTop();
   return (
