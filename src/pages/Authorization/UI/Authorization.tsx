@@ -49,7 +49,7 @@ const Authorization = () => {
     try {
       const result = await dispatch(loginUser({ name, password }));
       if (result.meta.requestStatus === "rejected") {
-        toast.error(Error || "Произошла ошибка");
+        toast.error("Неправильный имя пользователя или пароль");
       } else {
         navigate("/");
       }

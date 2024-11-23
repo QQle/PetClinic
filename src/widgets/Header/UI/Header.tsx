@@ -1,13 +1,12 @@
 import cls from "./Header.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "shared/UI/Button/Button";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAuth, userService } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import logo from "../../../shared/assets/love_icon.svg";
 import prof_icon from "../../../shared/assets/profile_icon.svg";
-import { getUserName } from "entities/Authorization";
 import {
   USER_LOCALSTORAGE_ID,
   USER_LOCALSTORAGE_USERNAME,
@@ -15,13 +14,22 @@ import {
 
 const Header = () => {
   const dispatch = useAppDispatch();
-  const isAuth = true;
-  const userNameLS = localStorage.getItem(USER_LOCALSTORAGE_USERNAME);
-  const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
-  const userName = JSON.parse(userNameLS || "user");
-  const userID = JSON.parse(userIDLS || "0");
+  const isAuth = useSelector(getAuth);
+  let userName = "user";
+  let userID = "0";
+  if (
+    localStorage.getItem(USER_LOCALSTORAGE_USERNAME) &&
+    localStorage.getItem(USER_LOCALSTORAGE_ID)
+  ) {
+    const userNameLS = localStorage.getItem(USER_LOCALSTORAGE_USERNAME);
+    const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
+    userName = JSON.parse(userNameLS || "user");
+    userID = JSON.parse(userIDLS || "0");
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };

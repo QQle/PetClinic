@@ -6,10 +6,14 @@ import Button from "shared/UI/Button/Button";
 import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import { FormAddPet } from "widgets/AddPet";
+import { getError, getPet, getResult } from "entities/AddPets";
+import { useSelector } from "react-redux";
 
 const ClientPage = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [visibleAdd, setVisibleAdd] = useState<boolean>(false);
+  const addPetError = useSelector(getError) || "";
+  const addPet = useSelector(getPet);
 
   const toggleVisible = () => {
     setVisible(true);
@@ -31,7 +35,7 @@ const ClientPage = () => {
         <SignUpForms />
       </Modal>
       <Modal visible={visibleAdd} setVisible={setVisibleAdd}>
-        <FormAddPet />
+        <FormAddPet addPet={addPet} addPetError={addPetError} />
       </Modal>
     </div>
   );

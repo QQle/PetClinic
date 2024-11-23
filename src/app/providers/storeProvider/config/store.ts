@@ -5,6 +5,7 @@ import { UserReducer } from "entities/User";
 import { PetsRegisteredReducer } from "entities/PetsRegistered";
 import { VetReducer } from "entities/Vet";
 import { StateSchema } from "./stateShema";
+import { AddPetsReducer } from "entities/AddPets";
 
 export function createRootStore(initialState?: StateSchema) {
   const rootReducer: ReducersMapObject<StateSchema> = {
@@ -13,6 +14,7 @@ export function createRootStore(initialState?: StateSchema) {
     user: UserReducer,
     pets: PetsRegisteredReducer,
     vet: VetReducer,
+    addPet: AddPetsReducer,
   };
 
   return configureStore<StateSchema>({
