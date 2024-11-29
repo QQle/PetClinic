@@ -1,8 +1,16 @@
 import { records } from "shared/mock data/records";
 import cls from "./RecordsList.module.scss";
 import Button from "shared/UI/Button/Button";
+import { Records } from "entities/Vet/model/type/type";
 
-const RecordsList = () => {
+interface RecordsListProps {
+  records: Records[];
+}
+
+const RecordsList: React.FC<RecordsListProps> = ({ records }) => {
+  if (!records.length) {
+    return <div className={cls.vetPage_empty}>Записей не найдено</div>;
+  }
   return (
     <div className={cls.vetPage}>
       {records.map((item) => (

@@ -20,7 +20,7 @@ const FormAddPet: FC<addPetsProps> = ({ addPet, addPetError }) => {
       let userID = JSON.parse(userIDLS || "0");
       dispatch(AddPetsActions.setPets({ ownerId: userID }));
     }
-  }, []);
+  }, [dispatch]);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();

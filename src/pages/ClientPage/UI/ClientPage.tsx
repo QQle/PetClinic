@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cls from "./ClientPage.module.scss";
 import { PetsClient } from "widgets/PetsClient";
 import { RecordsList } from "widgets/RecordsList";
@@ -8,12 +8,24 @@ import { SignUpForms } from "widgets/SignupForms";
 import { FormAddPet } from "widgets/AddPet";
 import { getError, getPet } from "entities/AddPets";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { getRecords, getRecordsData } from "entities/Records";
+import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
 
 const ClientPage = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
+    let userID = JSON.parse(userIDLS || "0");
+    dispatch(getRecords(userID));
+  }, [dispatch]);
+
   const [visible, setVisible] = useState<boolean>(false);
   const [visibleAdd, setVisibleAdd] = useState<boolean>(false);
+
   const addPetError = useSelector(getError) || "";
   const addPet = useSelector(getPet);
+  const records = useSelector(getRecordsData);
 
   const toggleVisible = () => {
     setVisible(true);
@@ -30,7 +42,7 @@ const ClientPage = () => {
         <Button onClick={toggleVisible}>Записаться на прием</Button>
       </div>
       {/* <PetsClient pets={pets} /> */}
-      <RecordsList />
+      <RecordsList records={records} />
       <Modal visible={visible} setVisible={setVisible}>
         <SignUpForms />
       </Modal>
