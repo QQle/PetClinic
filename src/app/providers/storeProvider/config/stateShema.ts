@@ -4,6 +4,7 @@ import { PetsRegisteredSchema } from "entities/PetsRegistered";
 import { UserSchema } from "entities/User";
 import { VetSchema } from "entities/Vet";
 import { AddPetsSchema } from "entities/AddPets";
+import { ServiceSchema } from "entities/ServiceVet";
 
 export interface StateSchema {
   auth: AuthSchema;
@@ -12,6 +13,7 @@ export interface StateSchema {
   user: UserSchema;
   vet: VetSchema;
   addPet: AddPetsSchema;
+  service: ServiceSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

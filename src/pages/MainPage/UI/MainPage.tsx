@@ -5,15 +5,30 @@ import { cardInfo } from "shared/mock data/cardInfo";
 import { cardInfoPers } from "shared/mock data/cardInfo";
 import { SliderTop } from "widgets/SliderTop";
 import Button from "shared/UI/Button/Button";
-import { useState } from "react";
-import { data } from "shared/mock data/cardService";
-import { dataPerson } from "shared/mock data/cardPersonal";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getAuth } from "entities/User";
+import {
+  getServices,
+  getVeterinarian,
+  serviceData,
+  vetData,
+} from "entities/ServiceVet";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 
 const MainPage = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getServices());
+    dispatch(getVeterinarian());
+  }, [dispatch]);
+
+  const data = useSelector(serviceData);
+  const dataPerson = useSelector(vetData);
   const [showMore, setShowMore] = useState<boolean>(false);
   const isAuth = useSelector(getAuth);
+
   const defaultCount = 4;
   const displayedCards = showMore ? data : data.slice(0, defaultCount);
 
@@ -53,12 +68,16 @@ const MainPage = () => {
           </div>
         </div>
       </section>
-      <section className={cls.CardService}>
-        <CardService cards={displayedCards} isAuth={isAuth} />
-        <Button className={cls.CardService_btn} onClick={handleToggle}>
-          {showMore ? "Скрыть" : "Показать еще"}
-        </Button>
-      </section>
+      {!data.length ? (
+        ""
+      ) : (
+        <section className={cls.CardService}>
+          <CardService cards={displayedCards} isAuth={isAuth} />
+          <Button className={cls.CardService_btn} onClick={handleToggle}>
+            {showMore ? "Скрыть" : "Показать еще"}
+          </Button>
+        </section>
+      )}
       <section className={cls.CardPersonal}>
         <h2>Наши врачи</h2>
         <CardPerson persons={dataPerson} isAuth={isAuth} />

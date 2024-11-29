@@ -3,4 +3,8 @@ export interface UserSchema {
   isAuth: boolean;
   isLoading: boolean;
   error?: string;
+  role: string;
+  pets: Pet[];
 }
+
+export interface Pet {}

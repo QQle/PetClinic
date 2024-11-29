@@ -7,6 +7,8 @@ const initialState: UserSchema = {
   isLoading: false,
   userID: "",
   isAuth: false,
+  role: "user",
+  pets: [],
 };
 
 export const UserSlice = createSlice({

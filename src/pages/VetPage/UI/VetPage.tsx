@@ -1,7 +1,11 @@
 import Button from "shared/UI/Button/Button";
 import cls from "./VetPage.module.scss";
 import { records } from "shared/mock data/records";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+
 const VetPage = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className={cls.vetPage}>
       {records.map((item) => (

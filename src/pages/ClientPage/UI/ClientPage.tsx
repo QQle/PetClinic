@@ -6,7 +6,7 @@ import Button from "shared/UI/Button/Button";
 import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import { FormAddPet } from "widgets/AddPet";
-import { getError, getPet, getResult } from "entities/AddPets";
+import { getError, getPet } from "entities/AddPets";
 import { useSelector } from "react-redux";
 
 const ClientPage = () => {
