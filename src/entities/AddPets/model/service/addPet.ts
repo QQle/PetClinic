@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { baseUrl } from "shared/api/api";
 import axios, { AxiosError } from "axios";
+import { UserActions } from "entities/User";
 
 interface addPetData {
   name: string;
@@ -35,6 +36,16 @@ export const addPetPost = createAsyncThunk(
       if (!response.data) {
         throw new Error();
       }
+      const petsResponse = await axios.post(
+        `${baseUrl}Pet/GetPetsByOwner`,
+        addPetData.ownerId,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      thunkAPI.dispatch(UserActions.addPet(petsResponse.data));
       return response.data;
     } catch (e) {
       const error: AxiosError<KnownError> = e as any;

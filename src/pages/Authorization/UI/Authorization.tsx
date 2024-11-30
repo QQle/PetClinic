@@ -20,8 +20,6 @@ const Authorization = () => {
   const navigate = useNavigate();
   const name = useSelector(getUserName);
   const password = useSelector(getPassword);
-  const Error = useSelector(getError);
-  const [visible, setVisible] = useState(false);
 
   const handleUsername = useCallback(
     (value: string) => {

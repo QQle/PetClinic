@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAction } from "@reduxjs/toolkit";
 import { UserSchema } from "../type/type";
 import { userService } from "../service/userLogout";
 
@@ -18,6 +18,12 @@ export const UserSlice = createSlice({
     setUser: (state, action) => {
       state.userID = action.payload;
       state.isAuth = true;
+    },
+    setPets: (state, action) => {
+      state.pets = action.payload;
+    },
+    addPet(state, action) {
+      state.pets = action.payload;
     },
   },
   extraReducers: (builder) => {

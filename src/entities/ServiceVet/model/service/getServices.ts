@@ -12,7 +12,7 @@ export const getServices = createAsyncThunk(
   "get_services",
   async (_, thunkAPI) => {
     try {
-      const response = await $api.get(`Veterinarian/service`);
+      const response = await $api.get(`Favors/GetAllFavors`);
       if (!response.data) {
         throw new Error();
       }

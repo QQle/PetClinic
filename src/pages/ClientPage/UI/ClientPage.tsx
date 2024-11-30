@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { getRecords, getRecordsData } from "entities/Records";
 import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
+import { getDataPetsByOwner, getPetsByOwner } from "entities/User";
 
 const ClientPage = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ const ClientPage = () => {
     const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
     let userID = JSON.parse(userIDLS || "0");
     dispatch(getRecords(userID));
+    dispatch(getPetsByOwner(userID));
   }, [dispatch]);
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -26,7 +28,7 @@ const ClientPage = () => {
   const addPetError = useSelector(getError) || "";
   const addPet = useSelector(getPet);
   const records = useSelector(getRecordsData);
-
+  const petsData = useSelector(getDataPetsByOwner);
   const toggleVisible = () => {
     setVisible(true);
   };
