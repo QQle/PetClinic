@@ -13,7 +13,7 @@ export const RecordsSlice = createSlice({
   initialState,
   reducers: {
     setRecords: (state, action) => {
-      state.records.push(action.payload);
+      state.records = { ...state.records, ...action.payload };
     },
   },
   extraReducers: (builder) => {

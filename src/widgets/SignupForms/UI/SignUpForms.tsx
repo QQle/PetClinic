@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cls from "./SignUpForms.module.scss";
 import Button from "shared/UI/Button/Button";
 import Select from "shared/UI/Select/Select";
 import toast from "react-hot-toast";
 import { Pet } from "entities/User/model/type/type";
 import { Favor, Veterinarian } from "entities/ServiceVet/model/type/type";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
+import { addRecord } from "entities/Records/model/service/addRecord";
 interface SUFProps {
   petsData: Pet[];
   favors: Favor[];
@@ -12,85 +15,104 @@ interface SUFProps {
 }
 
 interface Option {
-  label: string; // Отображаемый текст
-  value: string; // Значение для передачи
+  label: string;
+  value: string;
 }
 
 const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
-  const mapFavorsToOptions = (favors: Favor[]): Option[] =>
-    favors.map((favor) => ({
-      label: favor.title,
-      value: favor.id, // Приводим к строке
-    }));
+  const dispatch = useAppDispatch();
+  const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
 
-  const mapVetsToOptions = (vets: Veterinarian[]): Option[] =>
-    vets.map((vet) => ({
-      label: `${vet.surname} ${vet.name} ${vet.lastName}`,
-      value: vet.id, // Приводим к строке
-    }));
+  const [selectedFavor, setSelectedFavor] = useState<string>("");
+  const [selectedVet, setSelectedVet] = useState<string>("");
+  const [selectedPet, setSelectedPet] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
-  const mapPetsToOptions = (pets: Pet[]): Option[] =>
-    pets.map((pet) => ({
-      label: pet.name,
-      value: pet.id, // Приводим к строке
-    }));
-
-  const [selectedFavor, setSelectedFavor] = useState<string>("") || "0";
-  const [selectedVet, setSelectedVet] = useState<string>("") || "0";
-  const [selectedPet, setSelectedPet] = useState<string>("") || "0";
-
-  const favorOptions = mapFavorsToOptions(favors);
-  const vetOptions = mapVetsToOptions(vets);
-  const petOptions = mapPetsToOptions(petsData);
-
-  const handleFavorChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setSelectedFavor(event.target.value);
-  const handleVetChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setSelectedVet(event.target.value);
-  const handlePetChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setSelectedPet(event.target.value);
-
-  const handleSubmit = () => {
-    if (!selectedFavor || !selectedVet || !selectedPet) {
-      toast.error("Пожалуйста, заполните все поля.");
-      return;
+  const mapOptions = <
+    T extends {
+      id: string;
+      title?: string;
+      name?: string;
+      surname?: string;
+      lastName?: string;
     }
-    console.log("Выбранная услуга:", selectedFavor);
-    console.log("Выбранный врач:", selectedVet);
-    console.log("Выбранное животное:", selectedPet);
-    toast.success("Запись успешна!");
+  >(
+    items: T[],
+    labelFormatter: (item: T) => string
+  ): Option[] =>
+    items.map((item) => ({
+      label: labelFormatter(item),
+      value: item.id,
+    }));
+
+  const favorOptions = mapOptions(favors, (favor) => favor.title || "");
+  const vetOptions = mapOptions(
+    vets,
+    (vet) => `${vet.surname || ""} ${vet.name || ""} ${vet.lastName || ""}`
+  );
+  const petOptions = mapOptions(petsData, (pet) => pet.name || "");
+
+  useEffect(() => {
+    if (!selectedFavor && favorOptions.length > 0) {
+      setSelectedFavor(favorOptions[0].value);
+    }
+    if (!selectedVet && vetOptions.length > 0) {
+      setSelectedVet(vetOptions[0].value);
+    }
+    if (!selectedPet && petOptions.length > 0) {
+      setSelectedPet(petOptions[0].value);
+    }
+  }, [favorOptions, vetOptions, petOptions]);
+  const handleSubmit = () => {
+    const addRecordData = {
+      userId: userID,
+      petId: selectedPet,
+      veterinarianId: selectedVet,
+      favorsId: selectedFavor,
+      dateOfAdmission: selectedDate,
+    };
+
+    dispatch(addRecord(addRecordData))
+      .unwrap()
+      .then(() => {
+        toast.success("Запись успешна!");
+      })
+      .catch((error) => {
+        toast.error(`Ошибка: ${error.message || "Неизвестная ошибка"}`);
+      });
   };
 
   return (
     <div>
-      <form className={cls.form}>
+      <form className={cls.form} onSubmit={(e) => e.preventDefault()}>
         <Select
           children="Услуга"
           aria-label="Выберите услугу"
           options={favorOptions}
           value={selectedFavor}
-          onChange={handleFavorChange}
+          onChange={(e) => setSelectedFavor(e.target.value)}
         />
         <Select
           children="Врач"
           aria-label="Выберите врача"
           options={vetOptions}
           value={selectedVet}
-          onChange={handleVetChange}
+          onChange={(e) => setSelectedVet(e.target.value)}
         />
         <Select
           children="Кого хотите записать?"
           aria-label="Выберите животное"
           options={petOptions}
           value={selectedPet}
-          onChange={handlePetChange}
+          onChange={(e) => setSelectedPet(e.target.value)}
         />
-        <Button
-          onClick={handleSubmit}
-          disabled={!selectedFavor || !selectedVet || !selectedPet}
-        >
-          ЗАПИСАТЬСЯ
-        </Button>
+        <h3 className={cls.formDiv}>Выберите дату</h3>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
+        <Button onClick={handleSubmit}>ЗАПИСАТЬСЯ</Button>
       </form>
     </div>
   );

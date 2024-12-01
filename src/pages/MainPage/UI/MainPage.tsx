@@ -7,7 +7,7 @@ import { SliderTop } from "widgets/SliderTop";
 import Button from "shared/UI/Button/Button";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getAuth } from "entities/User";
+import { getAuth, getDataPetsByOwner, getPetsByOwner } from "entities/User";
 import {
   getServices,
   getVeterinarian,
@@ -15,13 +15,15 @@ import {
   vetData,
 } from "entities/ServiceVet";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
-
+  const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
   useEffect(() => {
     dispatch(getServices());
     dispatch(getVeterinarian());
+    dispatch(getPetsByOwner(userID));
   }, [dispatch]);
 
   const data = useSelector(serviceData);
@@ -31,7 +33,7 @@ const MainPage = () => {
 
   const defaultCount = 4;
   const displayedCards = showMore ? data : data.slice(0, defaultCount);
-
+  const petsData = useSelector(getDataPetsByOwner);
   const handleToggle = () => {
     setShowMore(!showMore);
   };
@@ -72,7 +74,12 @@ const MainPage = () => {
         ""
       ) : (
         <section className={cls.CardService}>
-          <CardService cards={displayedCards} isAuth={isAuth} />
+          <CardService
+            cards={displayedCards}
+            isAuth={isAuth}
+            petsData={petsData}
+            vets={dataPerson}
+          />
           <Button className={cls.CardService_btn} onClick={handleToggle}>
             {showMore ? "Скрыть" : "Показать еще"}
           </Button>
@@ -80,7 +87,12 @@ const MainPage = () => {
       )}
       <section className={cls.CardPersonal}>
         <h2>Наши врачи</h2>
-        <CardPerson persons={dataPerson} isAuth={isAuth} />
+        <CardPerson
+          persons={dataPerson}
+          isAuth={isAuth}
+          cards={displayedCards}
+          petsData={petsData}
+        />
       </section>
     </div>
   );

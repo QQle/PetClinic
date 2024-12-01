@@ -7,6 +7,7 @@
   justify-content: space-around;
   min-width: 400px;
   min-height: 300px;
+  color: #000;
   input {
     padding: 8px 12px;
     border-radius: 20px;
@@ -15,5 +16,10 @@
   Button {
     margin-top: 10px;
     border-radius: 12px;
+  }
+  .formDiv {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    color: #000000;
   }
 }

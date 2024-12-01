@@ -4,22 +4,36 @@ import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
-import { Veterinarian } from "entities/ServiceVet/model/type/type";
+import { Favor, Veterinarian } from "entities/ServiceVet/model/type/type";
+import { Pet } from "entities/User/model/type/type";
 
 interface CardPersonProps {
   isAuth: boolean;
   persons: Veterinarian[];
+  cards: Favor[];
+  petsData: Pet[];
 }
 
-const CardPerson: FC<CardPersonProps> = ({ persons, isAuth }) => {
+const CardPerson: FC<CardPersonProps> = ({
+  persons,
+  isAuth,
+  cards,
+  petsData,
+}) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const toggleVisible = () => {
+  const [selectedVetId, setSelectedVetId] = useState<string | null>(null);
+
+  const toggleVisible = (id: string) => {
     if (isAuth) {
+      setSelectedVetId(id);
       setVisible(true);
     } else {
       toast("Вам надо зайти в свой аккаунт!");
     }
   };
+
+  const selectedVet = persons.find((vet) => vet.id === selectedVetId);
+
   return (
     <>
       {!persons.length ? (
@@ -38,16 +52,24 @@ const CardPerson: FC<CardPersonProps> = ({ persons, isAuth }) => {
                 <span>{item.position}</span>
                 <div className={style.cardBtnNPrice}>
                   Прием: {item.price} ₽
-                  <Button onClick={() => toggleVisible()}>Записаться</Button>
+                  <Button onClick={() => toggleVisible(item.id)}>
+                    Записаться
+                  </Button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       )}
-      {/* <Modal visible={visible} setVisible={setVisible}>
-        <SignUpForms />
-      </Modal> */}
+      {selectedVet && (
+        <Modal visible={visible} setVisible={setVisible}>
+          <SignUpForms
+            favors={cards}
+            vets={[selectedVet]}
+            petsData={petsData}
+          />
+        </Modal>
+      )}
     </>
   );
 };
