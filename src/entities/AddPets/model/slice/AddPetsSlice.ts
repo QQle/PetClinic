@@ -9,7 +9,7 @@ const initialState: AddPetsSchema = {
   pets: {
     type: "",
     gender: "",
-    age: 0,
+    age: "",
     sterilized: false,
     vaccinated: false,
     name: "",

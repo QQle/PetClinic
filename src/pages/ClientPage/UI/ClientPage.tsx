@@ -12,6 +12,12 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { getRecords, getRecordsData } from "entities/Records";
 import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
 import { getDataPetsByOwner, getPetsByOwner } from "entities/User";
+import {
+  getServices,
+  getVeterinarian,
+  serviceData,
+  vetData,
+} from "entities/ServiceVet";
 
 const ClientPage = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +26,8 @@ const ClientPage = () => {
     let userID = JSON.parse(userIDLS || "0");
     dispatch(getRecords(userID));
     dispatch(getPetsByOwner(userID));
+    dispatch(getServices());
+    dispatch(getVeterinarian());
   }, [dispatch]);
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -29,6 +37,8 @@ const ClientPage = () => {
   const addPet = useSelector(getPet);
   const records = useSelector(getRecordsData);
   const petsData = useSelector(getDataPetsByOwner);
+  const favors = useSelector(serviceData);
+  const vets = useSelector(vetData);
   const toggleVisible = () => {
     setVisible(true);
   };
@@ -46,7 +56,7 @@ const ClientPage = () => {
       {/* <PetsClient pets={pets} /> */}
       <RecordsList records={records} />
       <Modal visible={visible} setVisible={setVisible}>
-        <SignUpForms />
+        <SignUpForms favors={favors} petsData={petsData} vets={vets} />
       </Modal>
       <Modal visible={visibleAdd} setVisible={setVisibleAdd}>
         <FormAddPet addPet={addPet} addPetError={addPetError} />

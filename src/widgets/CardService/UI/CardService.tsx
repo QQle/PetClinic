@@ -4,15 +4,11 @@ import { FC, useState } from "react";
 import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import toast, { Toaster } from "react-hot-toast";
+import { Favor } from "entities/ServiceVet/model/type/type";
 
 interface CardServiceProps {
   isAuth: boolean;
-  cards: Array<{
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-  }>;
+  cards: Favor[];
 }
 
 const CardService: FC<CardServiceProps> = ({ cards, isAuth }) => {
@@ -30,16 +26,14 @@ const CardService: FC<CardServiceProps> = ({ cards, isAuth }) => {
             Прием <br></br>
             {item.title}
           </h2>
-          <span>от {item.price} ₽</span>
+          <span>от {item.basePrice} ₽</span>
           <p>{item.description}</p>
-          <Button onClick={() => toggleVisible(item.id)}>
-            Записать питомца
-          </Button>
+          <Button>Записать питомца</Button>
         </div>
       ))}
-      <Modal visible={visible} setVisible={setVisible}>
+      {/* <Modal visible={visible} setVisible={setVisible}>
         <SignUpForms />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

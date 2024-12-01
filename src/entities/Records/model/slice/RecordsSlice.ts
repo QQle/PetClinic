@@ -5,12 +5,17 @@ const initialState: RecordSchema = {
   error: "",
   isLoading: false,
   records: [],
+  addRecords: [],
 };
 
 export const RecordsSlice = createSlice({
   name: "Records",
   initialState,
-  reducers: {},
+  reducers: {
+    setRecords: (state, action) => {
+      state.records.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getRecords.pending, (state) => {

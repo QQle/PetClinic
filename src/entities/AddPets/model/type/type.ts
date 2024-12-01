@@ -8,7 +8,7 @@ export interface AddPetsSchema {
 export interface Pet {
   type: string;
   gender: string;
-  age: number;
+  age: string;
   sterilized: boolean;
   vaccinated: boolean;
   name: string;

@@ -4,18 +4,11 @@ import Modal from "shared/UI/Modal/Modal";
 import { SignUpForms } from "widgets/SignupForms";
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
+import { Veterinarian } from "entities/ServiceVet/model/type/type";
 
 interface CardPersonProps {
   isAuth: boolean;
-  persons: Array<{
-    id: number;
-    img: string;
-    price: number;
-    surname: string;
-    name: string;
-    lastName: string;
-    position: string;
-  }>;
+  persons: Veterinarian[];
 }
 
 const CardPerson: FC<CardPersonProps> = ({ persons, isAuth }) => {
@@ -52,9 +45,9 @@ const CardPerson: FC<CardPersonProps> = ({ persons, isAuth }) => {
           ))}
         </div>
       )}
-      <Modal visible={visible} setVisible={setVisible}>
+      {/* <Modal visible={visible} setVisible={setVisible}>
         <SignUpForms />
-      </Modal>
+      </Modal> */}
     </>
   );
 };

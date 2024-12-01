@@ -8,7 +8,7 @@ export interface UserSchema {
 }
 
 export interface Pet {
-  id: number;
+  id: string;
   type: string;
   gender: string;
   age: number;

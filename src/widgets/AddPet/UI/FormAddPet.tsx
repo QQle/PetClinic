@@ -32,7 +32,7 @@ const FormAddPet: FC<addPetsProps> = ({ addPet, addPetError }) => {
           type: "",
           name: "",
           gender: "",
-          age: 0,
+          age: "0",
           sterilized: false,
           vaccinated: false,
           ownerId: addPet.ownerId,
@@ -78,7 +78,7 @@ const FormAddPet: FC<addPetsProps> = ({ addPet, addPetError }) => {
           placeholder="Возраст"
           value={addPet.age}
           onChange={(e) =>
-            dispatch(AddPetsActions.setPets({ age: Number(e.target.value) }))
+            dispatch(AddPetsActions.setPets({ age: e.target.value }))
           }
           required
         />

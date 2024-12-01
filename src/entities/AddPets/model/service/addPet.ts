@@ -7,7 +7,7 @@ interface addPetData {
   name: string;
   type: string;
   gender: string;
-  age: number;
+  age: string;
   sterilized: boolean;
   vaccinated: boolean;
   ownerId: string;
@@ -26,7 +26,7 @@ export const addPetPost = createAsyncThunk(
       const response = await axios.post(`${baseUrl}Pet/InsertNewPet`, {
         type: addPetData.type,
         gender: addPetData.gender,
-        age: addPetData.age,
+        age: String(addPetData.age),
         sterilized: addPetData.sterilized,
         vaccinated: addPetData.vaccinated,
         name: addPetData.name,

@@ -12,7 +12,11 @@ export const getRecords = createAsyncThunk(
   "get_records",
   async (id: string, thunkAPI) => {
     try {
-      const response = await $api.get(`pet/records/${id}`);
+      const response = await $api.post(`User/GetAllUserBids`, id, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (!response.data) {
         throw new Error();
       }

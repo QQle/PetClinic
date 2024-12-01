@@ -1,10 +1,13 @@
-import { records } from "shared/mock data/records";
 import cls from "./RecordsList.module.scss";
-import Button from "shared/UI/Button/Button";
-import { Records } from "entities/Vet/model/type/type";
 
 interface RecordsListProps {
-  records: Records[];
+  records: Array<{
+    id: string;
+    petName: string;
+    veterinarianName: string;
+    serviceName: string;
+    dateOfAdmission: Date;
+  }>;
 }
 
 const RecordsList: React.FC<RecordsListProps> = ({ records }) => {
@@ -16,12 +19,17 @@ const RecordsList: React.FC<RecordsListProps> = ({ records }) => {
       {records.map((item) => (
         <div className={cls.vetPage_card} key={item.id}>
           <div>
-            <div>{item.type}</div>
-            <div>Кличка: {item.name}</div>
-            <div>Возраст: {item.age}</div>
-            <div>Пол: {item.gender}</div>
-            <div>Стериализован: {item.sterilized ? "Да" : "Нет"}</div>
-            <div>Вакцинирован: {item.vaccinated ? "Да" : "Нет"}</div>
+            <div>{item.petName}</div>
+            <div>Ветеринар: {item.veterinarianName}</div>
+            <div>Прием: {item.serviceName}</div>
+            <div>
+              Дата приема:{" "}
+              {item.dateOfAdmission.toLocaleDateString("ru-RU", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
           </div>
         </div>
       ))}
