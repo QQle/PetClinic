@@ -25,6 +25,9 @@ export const UserSlice = createSlice({
     addPet(state, action) {
       state.pets = action.payload;
     },
+    setRole(state, action) {
+      state.role = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder

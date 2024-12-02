@@ -49,6 +49,9 @@ export const loginUser = createAsyncThunk(
         JSON.stringify(response.data.currentUser)
       );
       thunkAPI.dispatch(UserActions.setUser(response.data.currentUser));
+      if (!(response.data.role === "user")) {
+        thunkAPI.dispatch(UserActions.setRole(response.data.role));
+      }
       return response.data;
     } catch (e) {
       const error: AxiosError<KnownError> = e as any;

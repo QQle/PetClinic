@@ -7,14 +7,18 @@ import { getAuth, userService } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import logo from "../../../shared/assets/love_icon.svg";
 import prof_icon from "../../../shared/assets/profile_icon.svg";
+import vet from "../../../shared/assets/vet.png";
 import {
   USER_LOCALSTORAGE_ID,
   USER_LOCALSTORAGE_USERNAME,
 } from "shared/const/localStorage";
+import { getRole } from "entities/User/model/selectors/getRole";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(getAuth);
+  const role = useSelector(getRole);
+  console.log("rple-" + role);
   let userName = "user";
   let userID = "0";
   if (
@@ -27,12 +31,7 @@ const Header = () => {
     userID = JSON.parse(userIDLS || "0");
   }
 
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <header className={cls.header}>
@@ -45,17 +44,32 @@ const Header = () => {
           <Button onClick={() => navigate("/login")}>Войти</Button>
         ) : (
           <>
-            <NavLink
-              to={`/Profile/${userID}`}
-              className={cls.header_navigate__item}
-            >
-              <div className={cls.header_profile} onClick={toggleOpen}>
-                <div className={cls.header_profile__img}>
-                  <img src={prof_icon} alt="avatar" />
+            {role === "ser" ? (
+              <NavLink
+                to={`/Profile/${userID}`}
+                className={cls.header_navigate__item}
+              >
+                <div className={cls.header_profile}>
+                  <div className={cls.header_profile__img}>
+                    <img src={prof_icon} alt="avatar" />
+                  </div>
+                  <span>{userName}</span>
                 </div>
-                <span>{userName}</span>
-              </div>
-            </NavLink>
+              </NavLink>
+            ) : (
+              <NavLink
+                to={`/vetCabinet/${userID}`}
+                className={cls.header_navigate__item}
+              >
+                <div className={cls.header_profile}>
+                  <div className={cls.header_profile__img}>
+                    <img src={vet} alt="avatar" />
+                  </div>
+                  <span>{userName}</span>
+                </div>
+              </NavLink>
+            )}
+
             <NavLink
               to={"/vacancy"}
               className={cls.header_navigate__item}

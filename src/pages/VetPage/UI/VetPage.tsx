@@ -1,10 +1,29 @@
 import Button from "shared/UI/Button/Button";
 import cls from "./VetPage.module.scss";
-import { records } from "shared/mock data/records";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { useSelector } from "react-redux";
+import {
+  getIsAcceptVet,
+  getRecordsByVet,
+  getRecordsByVetS,
+  postRecords,
+} from "entities/Vet";
+import { useEffect } from "react";
+import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
 
 const VetPage = () => {
   const dispatch = useAppDispatch();
+  const isAccept = useSelector(getIsAcceptVet);
+  const records = useSelector(getRecordsByVetS);
+  const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
+
+  useEffect(() => {
+    dispatch(getRecordsByVet(userID));
+  }, [dispatch]);
+
+  const handleAccept = (id: string) => {
+    dispatch(postRecords(id));
+  };
 
   return (
     <div className={cls.vetPage}>
@@ -18,7 +37,11 @@ const VetPage = () => {
             <div>Стериализован: {item.sterilized ? "Да" : "Нет"}</div>
             <div>Вакцинирован: {item.vaccinated ? "Да" : "Нет"}</div>
           </div>
-          <Button>Принять</Button>
+          {!isAccept ? (
+            <Button onClick={() => handleAccept(item.id)}>Принять</Button>
+          ) : (
+            <Button className={cls.acceptBtn}>Принята</Button>
+          )}
         </div>
       ))}
     </div>
