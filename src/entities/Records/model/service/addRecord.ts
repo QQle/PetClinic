@@ -9,7 +9,7 @@ interface recordData {
   petId: string;
   veterinarianId: string;
   favorsId: string;
-  dateOfAdmission: string;
+  dateOfAdmission?: Date;
 }
 
 interface KnownError {
@@ -26,8 +26,8 @@ export const addRecord = createAsyncThunk(
         userId: addRecordData.userId,
         petId: addRecordData.petId,
         veterinarianId: addRecordData.veterinarianId,
-        favorsId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        dateOfAdmission: "2024-12-01T17:30:44.435Z",
+        favorsId: addRecordData.favorsId,
+        dateOfAdmission: addRecordData.dateOfAdmission,
       });
 
       if (!response.data) {

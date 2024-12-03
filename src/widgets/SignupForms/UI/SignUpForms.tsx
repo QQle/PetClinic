@@ -26,7 +26,7 @@ const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
   const [selectedFavor, setSelectedFavor] = useState<string>("");
   const [selectedVet, setSelectedVet] = useState<string>("");
   const [selectedPet, setSelectedPet] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState<Date>();
 
   const mapOptions = <
     T extends {
@@ -109,8 +109,10 @@ const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
         <h3 className={cls.formDiv}>Выберите дату</h3>
         <input
           type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
+          value={
+            selectedDate ? selectedDate.toISOString().split("T")[0] : undefined
+          }
+          onChange={(e) => setSelectedDate(new Date(e.target.value))}
         />
         <Button onClick={handleSubmit}>ЗАПИСАТЬСЯ</Button>
       </form>

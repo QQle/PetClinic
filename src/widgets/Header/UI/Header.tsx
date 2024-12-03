@@ -10,6 +10,7 @@ import prof_icon from "../../../shared/assets/profile_icon.svg";
 import vet from "../../../shared/assets/vet.png";
 import {
   USER_LOCALSTORAGE_ID,
+  USER_LOCALSTORAGE_ROLE,
   USER_LOCALSTORAGE_USERNAME,
 } from "shared/const/localStorage";
 import { getRole } from "entities/User/model/selectors/getRole";
@@ -17,18 +18,20 @@ import { getRole } from "entities/User/model/selectors/getRole";
 const Header = () => {
   const dispatch = useAppDispatch();
   const isAuth = useSelector(getAuth);
-  const role = useSelector(getRole);
-  console.log("rple-" + role);
   let userName = "user";
   let userID = "0";
+  let role = "user";
   if (
     localStorage.getItem(USER_LOCALSTORAGE_USERNAME) &&
-    localStorage.getItem(USER_LOCALSTORAGE_ID)
+    localStorage.getItem(USER_LOCALSTORAGE_ID) &&
+    localStorage.getItem(USER_LOCALSTORAGE_ROLE)
   ) {
     const userNameLS = localStorage.getItem(USER_LOCALSTORAGE_USERNAME);
     const userIDLS = localStorage.getItem(USER_LOCALSTORAGE_ID);
+    const roleLS = localStorage.getItem(USER_LOCALSTORAGE_ROLE);
     userName = JSON.parse(userNameLS || "user");
     userID = JSON.parse(userIDLS || "0");
+    role = JSON.parse(roleLS || "user");
   }
 
   const navigate = useNavigate();
@@ -44,7 +47,7 @@ const Header = () => {
           <Button onClick={() => navigate("/login")}>Войти</Button>
         ) : (
           <>
-            {role === "ser" ? (
+            {role === "User" ? (
               <NavLink
                 to={`/Profile/${userID}`}
                 className={cls.header_navigate__item}

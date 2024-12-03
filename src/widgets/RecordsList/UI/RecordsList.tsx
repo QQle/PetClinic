@@ -23,12 +23,7 @@ const RecordsList: React.FC<RecordsListProps> = ({ records }) => {
             <div>Ветеринар: {item.veterinarianName}</div>
             <div>Прием: {item.serviceName}</div>
             <div>
-              Дата приема:{" "}
-              {item.dateOfAdmission.toLocaleDateString("ru-RU", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              Дата: {new Date(item.dateOfAdmission).toLocaleDateString()}
             </div>
           </div>
         </div>

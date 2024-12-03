@@ -2,18 +2,12 @@ import Button from "shared/UI/Button/Button";
 import cls from "./VetPage.module.scss";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
-import {
-  getIsAcceptVet,
-  getRecordsByVet,
-  getRecordsByVetS,
-  postRecords,
-} from "entities/Vet";
+import { getRecordsByVet, getRecordsByVetS, postRecords } from "entities/Vet";
 import { useEffect } from "react";
 import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
 
 const VetPage = () => {
   const dispatch = useAppDispatch();
-  const isAccept = useSelector(getIsAcceptVet);
   const records = useSelector(getRecordsByVetS);
   const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
 
@@ -28,17 +22,19 @@ const VetPage = () => {
   return (
     <div className={cls.vetPage}>
       {records.map((item) => (
-        <div className={cls.vetPage_card} key={item.id}>
+        <div className={cls.vetPage_card} key={item.bidId}>
           <div>
             <div>{item.type}</div>
-            <div>Кличка: {item.name}</div>
+            <div>Имя клиента: {item.clientName}</div>
+            <div>Услуга: {item.favorName}</div>
+            <div>Имя питомца: {item.petName}</div>
             <div>Возраст: {item.age}</div>
             <div>Пол: {item.gender}</div>
             <div>Стериализован: {item.sterilized ? "Да" : "Нет"}</div>
             <div>Вакцинирован: {item.vaccinated ? "Да" : "Нет"}</div>
           </div>
-          {!isAccept ? (
-            <Button onClick={() => handleAccept(item.id)}>Принять</Button>
+          {!item.isAccept ? (
+            <Button onClick={() => handleAccept(item.bidId)}>Принять</Button>
           ) : (
             <Button className={cls.acceptBtn}>Принята</Button>
           )}

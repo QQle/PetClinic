@@ -14,8 +14,9 @@ export interface Favor {
 
 export interface Veterinarian {
   id: string;
-  img: string;
+  photoUrl: string;
   price: number;
+  specialization: string;
   surname: string;
   name: string;
   lastName: string;

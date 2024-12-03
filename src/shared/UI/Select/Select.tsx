@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Select.module.scss";
 
 interface CardServiceProps {
-  children: string;
+  children?: string;
   options: { value: string; label: string }[];
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;

@@ -38,10 +38,7 @@ const CardService: FC<CardServiceProps> = ({
     <div className={style.card}>
       {cards.map((item) => (
         <div key={item.id} className={style.card_content}>
-          <h2>
-            Прием <br />
-            {item.title}
-          </h2>
+          <h2>{item.title}</h2>
           <span>от {item.basePrice} ₽</span>
           <p>{item.description}</p>
           <Button onClick={() => toggleVisible(item.id)}>

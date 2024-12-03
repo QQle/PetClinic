@@ -7,11 +7,13 @@ export interface VetSchema {
 }
 
 export interface Records {
-  id: string;
+  bidId: string;
   type: string;
   gender: string;
   age: number;
-  name: string;
+  clientName: string;
+  petName: string;
+  favorName: string;
   sterilized: boolean;
   vaccinated: boolean;
   isAccept: boolean;

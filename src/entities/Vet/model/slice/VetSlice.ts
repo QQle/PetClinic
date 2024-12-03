@@ -14,7 +14,7 @@ export const VetSlice = createSlice({
   reducers: {
     setIsAccept: (state, action) => {
       state.records = state.records.map((record) =>
-        record.id === action.payload
+        record.bidId === action.payload
           ? { ...record, isAccept: !record.isAccept }
           : record
       );

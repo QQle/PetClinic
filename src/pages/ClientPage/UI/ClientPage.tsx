@@ -39,6 +39,7 @@ const ClientPage = () => {
   const petsData = useSelector(getDataPetsByOwner);
   const favors = useSelector(serviceData);
   const vets = useSelector(vetData);
+
   const toggleVisible = () => {
     setVisible(true);
   };

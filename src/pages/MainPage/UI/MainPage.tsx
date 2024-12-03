@@ -90,7 +90,7 @@ const MainPage = () => {
         <CardPerson
           persons={dataPerson}
           isAuth={isAuth}
-          cards={displayedCards}
+          cards={data}
           petsData={petsData}
         />
       </section>

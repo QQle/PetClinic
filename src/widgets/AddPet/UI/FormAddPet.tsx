@@ -5,6 +5,7 @@ import { FC, useEffect } from "react";
 import { AddPetsActions, Pet, addPetPost } from "entities/AddPets";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
+import Select from "shared/UI/Select/Select";
 
 interface addPetsProps {
   addPet: Pet;
@@ -43,33 +44,43 @@ const FormAddPet: FC<addPetsProps> = ({ addPet, addPetError }) => {
     }
   };
 
+  const petTypeOptions = [
+    { label: "Кошка", value: "Кошка" },
+    { label: "Собака", value: "Собака" },
+  ];
+
+  const petGenderOptions = [
+    { label: "Мальчик", value: "Мальчик" },
+    { label: "Девочка", value: "Девочка" },
+  ];
+
   return (
     <div className={cls.FormAddPet}>
       <form className={cls.Forms} onSubmit={handleCreate}>
-        <input
-          type="text"
-          placeholder="Тип: кошка или собака"
+        <Select
+          children="Выберите тип питомца"
+          aria-label="Выберите тип питомца"
+          options={petTypeOptions}
           value={addPet.type}
           onChange={(e) =>
             dispatch(AddPetsActions.setPets({ type: e.target.value }))
           }
-          required
         />
-        <input
-          type="text"
-          placeholder="Кличка"
-          value={addPet.name}
-          onChange={(e) =>
-            dispatch(AddPetsActions.setPets({ name: e.target.value }))
-          }
-          required
-        />
-        <input
-          type="text"
-          placeholder="Пол"
+        <Select
+          children="Выберите пол питомца"
+          aria-label="Выберите пол питомца"
+          options={petGenderOptions}
           value={addPet.gender}
           onChange={(e) =>
             dispatch(AddPetsActions.setPets({ gender: e.target.value }))
+          }
+        />
+        <input
+          type="text"
+          placeholder="Имя питомца"
+          value={addPet.name}
+          onChange={(e) =>
+            dispatch(AddPetsActions.setPets({ name: e.target.value }))
           }
           required
         />

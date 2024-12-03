@@ -42,14 +42,18 @@ const CardPerson: FC<CardPersonProps> = ({
         <div className={style.cardLoyut}>
           {persons.map((item) => (
             <div className={style.card} key={item.id}>
-              <img src={item.img} className={style.cardPhoto} alt={item.name} />
+              <img
+                src={item.photoUrl}
+                className={style.cardPhoto}
+                alt={item.name}
+              />
               <div className={style.text}>
                 <h3>
                   {item.surname}
                   <br />
                   {item.name} {item.lastName}
                 </h3>
-                <span>{item.position}</span>
+                <span>{item.specialization}</span>
                 <div className={style.cardBtnNPrice}>
                   Прием: {item.price} ₽
                   <Button onClick={() => toggleVisible(item.id)}>
