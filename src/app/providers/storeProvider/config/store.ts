@@ -8,6 +8,7 @@ import { StateSchema } from "./stateShema";
 import { AddPetsReducer } from "entities/AddPets";
 import { ServiceReducer } from "entities/ServiceVet";
 import { RecordsReducer } from "entities/Records";
+import { VolunteersRegisteredReducer } from "entities/VolunteersRegistered";
 
 export function createRootStore(initialState?: StateSchema) {
   const rootReducer: ReducersMapObject<StateSchema> = {
@@ -19,6 +20,7 @@ export function createRootStore(initialState?: StateSchema) {
     addPet: AddPetsReducer,
     service: ServiceReducer,
     records: RecordsReducer,
+    volunteers: VolunteersRegisteredReducer,
   };
 
   return configureStore<StateSchema>({

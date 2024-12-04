@@ -6,19 +6,24 @@ import { NavLink, useParams } from "react-router-dom";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { PetsData, getPet } from "entities/PetsRegistered";
 import { SliderComponent } from "widgets/Slider";
+import { VolunteerData, getVolunteers } from "entities/VolunteersRegistered";
+import { VolunteerCard } from "widgets/VolunteerCard";
 
 const PetPage = () => {
   const { id } = useParams<{ id: string }>();
   const pets = useSelector(PetsData);
   const dispatch = useAppDispatch();
-
+  const volunteerData = useSelector(VolunteerData);
   const pet = pets.result?.find((item) => item.id === id);
 
   useEffect(() => {
     if (!pet && id) {
       dispatch(getPet(Number(id)));
     }
-  }, [dispatch]);
+    if (pet?.ownerID) {
+      dispatch(getVolunteers(pet.ownerID));
+    }
+  }, [dispatch, pet?.ownerID]);
 
   return (
     <div className={cls.PetPage}>
@@ -73,6 +78,12 @@ const PetPage = () => {
           <div>
             <h2>Описание</h2>
             <div className={cls.description}>{pet.description}</div>
+          </div>
+          <div>
+            <h2>Контакт</h2>
+            {volunteerData && volunteerData.length > 0 && (
+              <VolunteerCard volunteer={volunteerData[0]} />
+            )}
           </div>
         </>
       )}
