@@ -8,7 +8,8 @@
   color: var(--primary-txt-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
   text-align: left;
   min-width: 400px;
   min-height: 380px;
@@ -22,6 +23,10 @@
     border-radius: 36px;
     line-height: 20px;
     font-weight: normal;
+  }
+  h2 {
+    width: fit-content;
+    height: 120px;
   }
   p {
     font-size: 16px;

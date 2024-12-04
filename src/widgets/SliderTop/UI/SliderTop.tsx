@@ -6,6 +6,7 @@ import cls from "./SliderTop.module.scss";
 import { sliderimg } from "shared/mock data/sliderImg";
 import Button from "shared/UI/Button/Button";
 import { Settings } from "react-slick";
+import { NavLink } from "react-router-dom";
 
 const SliderTop = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -84,7 +85,9 @@ const SliderTop = () => {
                     <h3>{item.title}</h3>
                     <p>{item.descr}</p>
                   </div>
-                  <Button>Подробнее</Button>
+                  <Button>
+                    <NavLink to={"/shelter"}>Подробнее</NavLink>
+                  </Button>
                 </div>
                 <img
                   src={item.img}

@@ -52,10 +52,19 @@
   Button {
     background: #fff;
     color: #000;
-  }
-  Button:hover {
-    background: #1f2127;
-    color: #fff;
+
+    a {
+      color: inherit;
+    }
+
+    &:hover {
+      background: #1f2127;
+      color: #fff;
+
+      a {
+        color: inherit;
+      }
+    }
   }
 }
 

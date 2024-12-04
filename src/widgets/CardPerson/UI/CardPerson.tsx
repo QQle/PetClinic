@@ -57,7 +57,7 @@ const CardPerson: FC<CardPersonProps> = ({
                 </h3>
                 <span>{item.specialization}</span>
                 <div className={style.cardBtnNPrice}>
-                  Прием: {item.price} ₽
+                  Прием: от {item.price} ₽
                   <Button onClick={() => toggleVisible(item.id)}>
                     Записаться
                   </Button>
