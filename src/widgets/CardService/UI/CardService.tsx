@@ -33,6 +33,9 @@ const CardService: FC<CardServiceProps> = ({
   };
 
   const selectedCard = cards.find((card) => card.id === selectedCardId);
+  const vetsSpes = vets.filter(
+    (item) => item.specialization === selectedCard?.specialization
+  );
 
   return (
     <div className={style.card}>
@@ -49,8 +52,8 @@ const CardService: FC<CardServiceProps> = ({
       {selectedCard && (
         <Modal visible={visible} setVisible={setVisible}>
           <SignUpForms
-            favors={[selectedCard]} // Передаем только выбранную услугу
-            vets={vets}
+            favors={[selectedCard]}
+            vets={vetsSpes}
             petsData={petsData}
           />
         </Modal>

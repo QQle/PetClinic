@@ -1,24 +1,54 @@
 .vetPage {
+  margin-top: 150px;
   display: flex;
-  margin-top: 100px;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  max-height: 800px;
-  overflow: scroll;
+  padding: 20px;
+  gap: 10px;
+
+  /* Ограничение высоты и скролл */
+  max-height: 600px;
+  overflow-y: auto;
+
+  /* Стили скролла */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
 }
+
 .vetPage_card {
-  width: 800px;
-  color: black;
+  width: 100%;
+  max-width: 900px;
+  min-width: 400px;
   background: #fff;
+  color: black;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 30px 40px;
+  align-items: flex-start;
+  padding: 20px;
   border-radius: var(--card-border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Для адаптивности */
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
 }
+
 .vetPage_empty {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
+  color: #666;
+  height: 100%;
+  text-align: center;
 }

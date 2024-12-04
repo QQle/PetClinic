@@ -10,6 +10,7 @@ export interface Favor {
   title: string;
   basePrice: number;
   description: string;
+  specialization: string;
 }
 
 export interface Veterinarian {

@@ -13,18 +13,26 @@ const VetPage = () => {
 
   useEffect(() => {
     dispatch(getRecordsByVet(userID));
-  }, [dispatch]);
+  }, [dispatch, userID]);
 
   const handleAccept = (id: string) => {
     dispatch(postRecords(id));
   };
+
+  if (!records.length) {
+    return (
+      <div className={cls.vetPage}>
+        <div className={cls.vetPage_empty}>Записей не найдено</div>
+      </div>
+    );
+  }
 
   return (
     <div className={cls.vetPage}>
       {records.map((item) => (
         <div className={cls.vetPage_card} key={item.bidId}>
           <div>
-            <div>{item.type}</div>
+            <div>Тип: {item.type}</div>
             <div>Имя клиента: {item.clientName}</div>
             <div>Услуга: {item.favorName}</div>
             <div>Имя питомца: {item.petName}</div>

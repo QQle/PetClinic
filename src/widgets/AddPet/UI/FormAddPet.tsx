@@ -54,6 +54,15 @@ const FormAddPet: FC<addPetsProps> = ({ addPet, addPetError }) => {
     { label: "Девочка", value: "Девочка" },
   ];
 
+  useEffect(() => {
+    if (addPet.gender === "") {
+      dispatch(AddPetsActions.setPets({ gender: petGenderOptions[0].value }));
+    }
+    if (addPet.type === "") {
+      dispatch(AddPetsActions.setPets({ type: petTypeOptions[0].value }));
+    }
+  }, [dispatch, petTypeOptions, petGenderOptions, addPet]);
+
   return (
     <div className={cls.FormAddPet}>
       <form className={cls.Forms} onSubmit={handleCreate}>

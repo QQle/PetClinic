@@ -33,7 +33,9 @@ const CardPerson: FC<CardPersonProps> = ({
   };
 
   const selectedVet = persons.find((vet) => vet.id === selectedVetId);
-
+  const favorsFilter = cards.filter(
+    (item) => item.specialization === selectedVet?.specialization
+  );
   return (
     <>
       {!persons.length ? (
@@ -68,7 +70,7 @@ const CardPerson: FC<CardPersonProps> = ({
       {selectedVet && (
         <Modal visible={visible} setVisible={setVisible}>
           <SignUpForms
-            favors={cards}
+            favors={favorsFilter}
             vets={[selectedVet]}
             petsData={petsData}
           />
