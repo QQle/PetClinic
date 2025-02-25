@@ -26,11 +26,11 @@ export const Footer = () => {
         <h5>Связаться с нами</h5>
         <div className={style.call}>
           <span>E-MAIL: </span>
-          <p> hi@petclinic.com</p>
+          <p> fostii@petclinic.com</p>
         </div>
         <div className={style.call}>
           <span>ПОЗВОНИТЬ: </span>
-          <p> 8(927)-033-69-39</p>
+          <p> 8(999)-430-74-32</p>
         </div>
       </div>
     </footer>

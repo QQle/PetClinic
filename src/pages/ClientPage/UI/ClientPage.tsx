@@ -18,6 +18,7 @@ import {
   serviceData,
   vetData,
 } from "entities/ServiceVet";
+import { Questions } from "widgets/Questions";
 
 const ClientPage = () => {
   const dispatch = useAppDispatch();
@@ -52,15 +53,16 @@ const ClientPage = () => {
     <div className={cls.ProfilePage}>
       <div className={cls.buttons}>
         <Button onClick={toggleVisibleAdd}>Доб. питомца</Button>
-        <Button onClick={toggleVisible}>Записаться на прием</Button>
+        <Button onClick={toggleVisible}>Пройти опрос</Button>
       </div>
       {/* <PetsClient pets={pets} /> */}
       <RecordsList records={records} />
-      <Modal visible={visible} setVisible={setVisible}>
-        <SignUpForms favors={favors} petsData={petsData} vets={vets} />
-      </Modal>
       <Modal visible={visibleAdd} setVisible={setVisibleAdd}>
         <FormAddPet addPet={addPet} addPetError={addPetError} />
+      </Modal>
+      <Modal visible={visible} setVisible={setVisible}>
+        <h2 className={cls.title}>Не знаете к кому записаться на прием?</h2>
+        <Questions onClose={toggleVisible} />
       </Modal>
     </div>
   );
