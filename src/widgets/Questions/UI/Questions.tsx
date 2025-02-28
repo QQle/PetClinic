@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NearestEntry, RecordsActions, getVet } from "entities/Records";
 import styles from "./Questions.module.scss";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
+import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
+import { getPet } from "entities/PetsRegistered";
+import toast from "react-hot-toast";
+import { addRecord } from "entities/Records/model/service/addRecord";
+import { getDataPetsByOwner } from "entities/User";
 
 interface Question {
   id: number;
@@ -73,11 +81,20 @@ const getResult = (answers: string[]) => {
   );
 
   if (score >= 7) {
-    return "Нужен ветеринар-реаниматолог или клиника с неотложной помощью. \nУ питомца серьезные симптомы, требуется срочная диагностика и интенсивная терапия.";
+    return {
+      text: "Нужен ветеринар-хирург или клиника с неотложной помощью. \nУ питомца серьезные симптомы, требуется срочная диагностика и интенсивная терапия.",
+      vet: "Хирургия",
+    };
   } else if (score >= 3) {
-    return "Подойдет терапевт для планового осмотра. \nСимптомы не критичные, но требуют диагностики и наблюдения.";
+    return {
+      text: "Подойдет терапевт для планового осмотра. \nСимптомы не критичные, но требуют диагностики и наблюдения.",
+      vet: "Общая медицина",
+    };
   } else {
-    return "Стоит проконсультироваться с ветеринаром общей практики перед визитом. \nСимптомы могут быть незначительными, но лучше убедиться.";
+    return {
+      text: "Стоит проконсультироваться с ветеринаром общей практики перед визитом. \nСимптомы могут быть незначительными, но лучше убедиться.",
+      vet: "Диагностика",
+    };
   }
 };
 
@@ -86,10 +103,18 @@ interface QuestionsProps {
 }
 
 const Questions = ({ onClose }: QuestionsProps) => {
+  const dispatch = useAppDispatch();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [result, setResult] = useState<string | null>(null);
-
+  const [result, setResult] = useState<{ text: string; vet: string } | null>(
+    null
+  );
+  const vet = useSelector(getVet);
+  const petsData = useSelector(getDataPetsByOwner);
+  const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
+  const lastPetId =
+    petsData.length > 0 ? petsData[petsData.length - 1].id : null;
+  const lastVet = vet.length > 0 ? vet[vet.length - 1] : null;
   useEffect(() => {
     return () => {
       setCurrentQuestion(0);
@@ -97,6 +122,12 @@ const Questions = ({ onClose }: QuestionsProps) => {
       setResult(null);
     };
   }, [onClose]);
+
+  useEffect(() => {
+    if (result) {
+      dispatch(NearestEntry({ vet: result.vet }));
+    }
+  }, [result, dispatch]);
 
   const handleAnswer = (answer: string) => {
     const updatedAnswers = [...answers, answer];
@@ -109,12 +140,59 @@ const Questions = ({ onClose }: QuestionsProps) => {
     }
   };
 
+  const addRecordVet = () => {
+    if (!lastVet || !lastPetId) {
+      toast.error("Не удалось получить данные о ветеринаре или питомце");
+      return;
+    }
+    console.log(vet);
+
+    const [day, month, year] = vet[0].nearestAvailableDate.split("-");
+    const isoDate = `${year}-${month}-${day}T${vet[0].nearestAvailableTime}:00.000Z`;
+
+    const addRecordData = {
+      userId: userID,
+      petId: lastPetId,
+      veterinarianId: lastVet.veterinarianId,
+      favorsId: lastVet.favor,
+      dateOfAdmission: isoDate,
+    };
+
+    console.log(isoDate);
+
+    dispatch(addRecord(addRecordData))
+      .unwrap()
+      .then(() => {
+        toast.success("Запись успешна!");
+        onClose();
+      })
+      .catch((error: any) => {
+        toast.error(`Ошибка: ${error.message || "Неизвестная ошибка"}`);
+      });
+  };
+
   return (
     <div className={styles.questions}>
       {result ? (
         <div className={styles.result}>
           <h3 style={{ color: "black" }}>Результат</h3>
-          <p style={{ color: "black" }}>{result}</p>
+          <p style={{ color: "black" }}>{result.text}</p>
+
+          {vet && vet.length > 0 && (
+            <div className={styles.vetInfo} key={vet[0].veterinarianId}>
+              <h4 style={{ color: "black" }}>Подходящий ветеринар</h4>
+              <p style={{ color: "black" }}>
+                {vet[0].veterinarianName} ({vet[0].specialization})
+              </p>
+              <p style={{ color: "black" }}>
+                Ближайшее время записи: {vet[0].nearestAvailableDate}{" "}
+                {vet[0].nearestAvailableTime}
+              </p>
+              <button onClick={addRecordVet} className={styles.agreButton}>
+                Если хотите записаться сейчас, нажмите сюда
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className={styles.survey}>

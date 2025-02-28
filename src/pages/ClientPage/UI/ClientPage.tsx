@@ -40,7 +40,7 @@ const ClientPage = () => {
   const petsData = useSelector(getDataPetsByOwner);
   const favors = useSelector(serviceData);
   const vets = useSelector(vetData);
-
+  const reversedRecords = [...records].reverse();
   const toggleVisible = () => {
     setVisible(true);
   };
@@ -56,7 +56,7 @@ const ClientPage = () => {
         <Button onClick={toggleVisible}>Пройти опрос</Button>
       </div>
       {/* <PetsClient pets={pets} /> */}
-      <RecordsList records={records} />
+      <RecordsList records={reversedRecords} />
       <Modal visible={visibleAdd} setVisible={setVisibleAdd}>
         <FormAddPet addPet={addPet} addPetError={addPetError} />
       </Modal>

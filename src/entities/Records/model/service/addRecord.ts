@@ -9,7 +9,7 @@ interface recordData {
   petId: string;
   veterinarianId: string;
   favorsId: string;
-  dateOfAdmission?: Date;
+  dateOfAdmission?: any;
 }
 
 interface KnownError {

@@ -15,4 +15,12 @@ export interface RecordSchema {
     favorsId: string;
     dateOfAdmission: Date;
   }>;
+  NearestEntry: Array<{
+    veterinarianId: string;
+    veterinarianName: string;
+    specialization: string;
+    nearestAvailableDate: string;
+    nearestAvailableTime: string;
+    favor: string;
+  }>;
 }

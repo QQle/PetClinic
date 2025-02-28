@@ -63,3 +63,21 @@
     background: #e63e3e;
   }
 }
+.agreButton {
+  background: #57ff9d;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background: #10ff73;
+  }
+
+  &:active {
+    background: #e63e3e;
+  }
+}

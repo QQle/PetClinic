@@ -6,6 +6,7 @@ const initialState: RecordSchema = {
   isLoading: false,
   records: [],
   addRecords: [],
+  NearestEntry: [],
 };
 
 export const RecordsSlice = createSlice({
@@ -14,6 +15,9 @@ export const RecordsSlice = createSlice({
   reducers: {
     setRecords: (state, action) => {
       state.records = action.payload;
+    },
+    setNearestEntry: (state, action) => {
+      state.NearestEntry = action.payload;
     },
   },
   extraReducers: (builder) => {
