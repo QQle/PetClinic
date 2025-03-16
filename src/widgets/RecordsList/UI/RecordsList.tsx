@@ -11,7 +11,7 @@ interface RecordsListProps {
 }
 
 const RecordsList: React.FC<RecordsListProps> = ({ records }) => {
-  if (!records.length) {
+  if (records.length === 0) {
     return (
       <div className={cls.vetPage}>
         <div className={cls.vetPage_empty}>Записей не найдено</div>

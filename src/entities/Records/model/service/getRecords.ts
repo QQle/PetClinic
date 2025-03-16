@@ -18,7 +18,7 @@ export const getRecords = createAsyncThunk(
         },
       });
       if (!response.data) {
-        throw new Error();
+        console.log("Error");
       }
       return response.data;
     } catch (e) {

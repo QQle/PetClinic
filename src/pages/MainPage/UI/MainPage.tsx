@@ -16,10 +16,12 @@ import {
 } from "entities/ServiceVet";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch";
 import { USER_LOCALSTORAGE_ID } from "shared/const/localStorage";
+import toast from "react-hot-toast";
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
   const userID = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_ID) || "0");
+
   useEffect(() => {
     dispatch(getServices());
     dispatch(getVeterinarian());
@@ -34,6 +36,19 @@ const MainPage = () => {
   const defaultCount = 4;
   const displayedCards = showMore ? data : data.slice(0, defaultCount);
   const petsData = useSelector(getDataPetsByOwner);
+
+  const needVaccination = petsData.filter(
+    (item) => item.needRevaccination === true
+  );
+
+  if (needVaccination.length > 0) {
+    const petNames = needVaccination.map((item) => item.name).join(", ");
+
+    toast(
+      `Питомцу(ам) ${petNames} необходимо записать на повторную вакцинацию!`
+    );
+  }
+
   const handleToggle = () => {
     setShowMore(!showMore);
   };

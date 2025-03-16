@@ -40,7 +40,8 @@ const ClientPage = () => {
   const petsData = useSelector(getDataPetsByOwner);
   const favors = useSelector(serviceData);
   const vets = useSelector(vetData);
-  const reversedRecords = [...records].reverse();
+  const reversedRecords = Array.isArray(records) ? [...records].reverse() : [];
+
   const toggleVisible = () => {
     setVisible(true);
   };

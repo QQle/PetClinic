@@ -15,4 +15,5 @@ export interface Pet {
   name: string;
   sterilized: boolean;
   vaccinated: boolean;
+  needRevaccination: boolean;
 }
