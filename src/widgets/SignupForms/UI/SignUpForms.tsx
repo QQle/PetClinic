@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ru } from "date-fns/locale";
 import cls from "./SignUpForms.module.scss";
 import Button from "shared/UI/Button/Button";
 import Select from "shared/UI/Select/Select";
@@ -26,7 +29,7 @@ const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
   const [selectedFavor, setSelectedFavor] = useState<string>("");
   const [selectedVet, setSelectedVet] = useState<string>("");
   const [selectedPet, setSelectedPet] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const mapOptions = <
     T extends {
@@ -64,12 +67,21 @@ const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
     }
   }, [favorOptions, vetOptions, petOptions]);
   const handleSubmit = () => {
+    if (!selectedDate) {
+      toast.error("Пожалуйста, выберите дату и время");
+      return;
+    }
+    const cleanDate = new Date(selectedDate);
+    cleanDate.setSeconds(0);
+    cleanDate.setMilliseconds(0);
+    const offsetMs = cleanDate.getTimezoneOffset() * 60 * 1000;
+    const utcDate = new Date(cleanDate.getTime() - offsetMs);
     const addRecordData = {
       userId: userID,
       petId: selectedPet,
       veterinarianId: selectedVet,
       favorsId: selectedFavor,
-      dateOfAdmission: selectedDate,
+      dateOfAdmission: utcDate.toISOString(),
     };
 
     dispatch(addRecord(addRecordData))
@@ -106,13 +118,19 @@ const SignUpForms: React.FC<SUFProps> = ({ favors, petsData, vets }) => {
           value={selectedPet}
           onChange={(e) => setSelectedPet(e.target.value)}
         />
-        <h3 className={cls.formDiv}>Выберите дату</h3>
-        <input
-          type="date"
-          value={
-            selectedDate ? selectedDate.toISOString().split("T")[0] : undefined
-          }
-          onChange={(e) => setSelectedDate(new Date(e.target.value))}
+        <h3 className={cls.formDiv}>Выберите дату и время</h3>
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          showTimeSelect
+          timeIntervals={30} 
+          timeFormat="HH:mm"
+          dateFormat="dd.MM.yyyy HH:mm"
+          placeholderText="Выберите дату и время"
+          minDate={new Date()}
+          locale={ru}
+          timeCaption="Время"
+          className={cls.dateInput}
         />
         <Button onClick={handleSubmit}>ЗАПИСАТЬСЯ</Button>
       </form>

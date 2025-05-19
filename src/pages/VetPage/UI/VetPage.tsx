@@ -32,13 +32,13 @@ const VetPage = () => {
       {records.map((item) => (
         <div className={cls.vetPage_card} key={item.bidId}>
           <div>
-            <div>Тип: {item.type}</div>
+            <div>Тип: {item.petType}</div>
             <div>Имя клиента: {item.clientName}</div>
             <div>Услуга: {item.favorName}</div>
             <div>Имя питомца: {item.petName}</div>
             <div>Возраст: {item.age}</div>
             <div>Пол: {item.gender}</div>
-            <div>Стериализован: {item.sterilized ? "Да" : "Нет"}</div>
+            <div>Стериализован: {item.sterialized ? "Да" : "Нет"}</div>
             <div>Вакцинирован: {item.vaccinated ? "Да" : "Нет"}</div>
           </div>
           {!item.isAccept ? (
